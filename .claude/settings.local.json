@@ -13,7 +13,8 @@
       "Bash(open /Users/zamkot/rep/fmajor/schedule.html)",
       "Read(//Users/zamkot/.agents/skills/grill-me/**)",
       "Bash(git check-ignore *)",
-      "Bash(echo \"ignored?:$?\")"
+      "Bash(echo \"ignored?:$?\")",
+      "Bash(grep -vE)"
     ]
   }
 }
