@@ -14,7 +14,8 @@
       "Read(//Users/zamkot/.agents/skills/grill-me/**)",
       "Bash(git check-ignore *)",
       "Bash(echo \"ignored?:$?\")",
-      "Bash(grep -vE)"
+      "Bash(grep -vE)",
+      "Bash(git status *)"
     ]
   },
   "enabledMcpjsonServers": [
