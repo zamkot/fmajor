@@ -22,21 +22,63 @@ CATEGORY_COLORS = {
 
 all_categories = sorted({c for e in events for c in e["categories_pl"]})
 
+# Seed value for localStorage on a visitor's first load — the user's initial picks:
+# Castellers, Correfoc (x2), Botifarrada (x2), "Paella" (Concurs d'Arrossos).
+DEFAULT_STARRED = [1359, 1316, 1385, 1936, 1310, 1395]
+
+# Calmer, visual, no-fire picks suggested for first-time-visiting parents.
+PARENT_PICKS = {1359, 1316, 1385}  # castellers + both correfocs, watched from a distance
+PARENT_EXTRA = {
+    "38a Trobada gegantera: plantada de gegants",
+    "38a Trobada gegantera: cercavila de gegants",
+    "38a Trobada gegantera: ball conjunt",
+    "Ballada de sardanes",
+    "XV Trobada de balls i entremesos d’arreu de Catalunya: cercavila",
+}
+PARENT_IDS = PARENT_PICKS | {e["id"] for e in events if e["title"].strip() in PARENT_EXTRA}
+
+
+def render_description(e):
+    desc_pl = e.get("description_pl")
+    desc_ca = e.get("description_ca")
+
+    if desc_pl:
+        pl_html = "".join(f"<p>{escape(p)}</p>" for p in desc_pl.split("\n\n"))
+        parts = [f'<div class="desc-pl">{pl_html}</div>']
+        if desc_ca:
+            parts.append(
+                '<details class="original"><summary>Oryginał (katalońsku)</summary>'
+                f'<div lang="ca">{desc_ca}</div></details>'
+            )
+        return "".join(parts)
+
+    if desc_ca:
+        return (
+            '<p class="desc-note">Brak tłumaczenia — oryginał po katalońsku '
+            "(kliknij prawym przyciskiem myszy i wybierz „Przetłumacz na polski”, "
+            'jeśli używasz Chrome):</p>'
+            f'<div lang="ca">{desc_ca}</div>'
+        )
+
+    return '<p class="desc-note placeholder">Brak opisu dla tego wydarzenia.</p>'
+
+
 def event_row(e):
-    cats = e["categories_pl"]
+    cats = list(e["categories_pl"])
+    is_parent = e["id"] in PARENT_IDS
+    if is_parent:
+        cats.append("__parents__")
     cat_attr = escape(" ".join(cats))
     badges = "".join(
         f'<span class="badge" style="--c:{CATEGORY_COLORS.get(c, "#666")}">{escape(c)}</span>'
-        for c in cats
+        for c in e["categories_pl"]
     )
-    desc = e.get("description_pl")
-    detail_html = (
-        f'<p class="desc">{escape(desc)}</p>'
-        if desc
-        else '<p class="desc placeholder">Brak opisu — do uzupełnienia na żądanie.</p>'
-    )
+    if is_parent:
+        badges += '<span class="badge parent" title="Polecane dla rodziców">👪 dla rodziców</span>'
+    detail_html = render_description(e)
     return f"""
-    <tr class="event" data-cats="{cat_attr}" tabindex="0">
+    <tr class="event" data-id="{e['id']}" data-cats="{cat_attr}" tabindex="0">
+      <td class="star-cell"><button class="star-btn" data-id="{e['id']}" aria-label="Oznacz gwiazdką" title="Oznacz gwiazdką">☆</button></td>
       <td class="time">{escape(e['time_pl'])}</td>
       <td class="title">
         <a href="{escape(e['url'])}" target="_blank" rel="noopener">{escape(e['title'])}</a>
@@ -44,8 +86,9 @@ def event_row(e):
       </td>
       <td class="loc">{escape(e['location'])}</td>
     </tr>
-    <tr class="detail-row"><td colspan="3"><div class="detail">{detail_html}</div></td></tr>
+    <tr class="detail-row"><td colspan="4"><div class="detail">{detail_html}</div></td></tr>
     """
+
 
 events_sorted = sorted(events, key=lambda e: (e["sort_key"][0], e["sort_key"][1]))
 
@@ -67,6 +110,10 @@ for day, day_events in groupby(events_sorted, key=lambda e: e["date_pl"]):
 filter_buttons = "".join(
     f'<button class="filter-btn" data-cat="{escape(c)}" style="--c:{CATEGORY_COLORS.get(c, "#666")}">{escape(c)}</button>'
     for c in all_categories
+)
+special_filter_buttons = (
+    '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b">★ Twoje wybrane</button>'
+    '<button class="filter-btn special" data-cat="__parents__" style="--c:#2a7a6b">👪 Dla rodziców</button>'
 )
 
 html = f"""<!DOCTYPE html>
@@ -116,6 +163,7 @@ html = f"""<!DOCTYPE html>
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    align-items: center;
   }}
   .filter-btn {{
     font-family: var(--serif);
@@ -131,6 +179,19 @@ html = f"""<!DOCTYPE html>
   }}
   .filter-btn.active {{ opacity: 1; background: color-mix(in srgb, var(--c) 12%, transparent); }}
   .filter-btn:hover {{ opacity: 0.85; }}
+  .filter-btn.special {{ font-weight: bold; }}
+  .export-btn {{
+    margin-left: auto;
+    font-family: var(--serif);
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+  }}
+  .export-btn:hover {{ border-color: var(--ink-light); color: var(--ink); }}
 
   .day {{ margin-bottom: 2.8rem; }}
   .day h2 {{
@@ -144,13 +205,30 @@ html = f"""<!DOCTYPE html>
     margin-bottom: 0;
   }}
   table {{ width: 100%; border-collapse: collapse; }}
-  tr.event {{ cursor: pointer; }}
   tr.event td {{
     padding: 0.55rem 0.3rem;
     border-bottom: 1px solid #eee;
     vertical-align: top;
   }}
   tr.event:hover td {{ background: #f5f3ee; }}
+  tr.event.starred td {{ background: #fdf6e3; }}
+  tr.event.starred:hover td {{ background: #fbeec9; }}
+  tr.event.starred td.time {{ border-left: 3px solid #b8860b; padding-left: calc(0.3rem - 3px); }}
+  td.star-cell {{
+    width: 1.6rem;
+    text-align: center;
+    cursor: pointer;
+  }}
+  .star-btn {{
+    background: none;
+    border: none;
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #b8860b;
+    padding: 0;
+  }}
+  tr.event .title {{ cursor: pointer; }}
   td.time {{
     font-variant-numeric: tabular-nums;
     color: var(--ink-light);
@@ -158,6 +236,7 @@ html = f"""<!DOCTYPE html>
     white-space: nowrap;
     font-size: 0.92rem;
     padding-top: 0.65rem;
+    cursor: pointer;
   }}
   td.title a {{
     color: var(--ink);
@@ -170,6 +249,7 @@ html = f"""<!DOCTYPE html>
     font-size: 0.88rem;
     text-align: right;
     width: 11rem;
+    cursor: pointer;
   }}
   .badge {{
     display: inline-block;
@@ -186,19 +266,39 @@ html = f"""<!DOCTYPE html>
   .detail {{
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.25s ease, padding 0.25s ease;
+    transition: max-height 0.3s ease, padding 0.3s ease;
   }}
   tr.event.open + tr.detail-row .detail {{
-    max-height: 400px;
-    padding: 0.2rem 0.3rem 0.9rem 0.3rem;
+    max-height: 900px;
+    padding: 0.2rem 0.3rem 0.9rem 2rem;
   }}
-  .desc {{
-    margin: 0;
+  .desc-pl p {{
+    margin: 0 0 0.6em;
     font-size: 0.92rem;
     color: #333;
     max-width: 38em;
+    white-space: pre-line;
   }}
-  .desc.placeholder {{ color: #999; font-style: italic; }}
+  .desc-note {{
+    margin: 0 0 0.4em;
+    font-size: 0.82rem;
+    color: #888;
+    font-style: italic;
+  }}
+  .desc-note.placeholder {{ color: #999; }}
+  details.original {{ margin-top: 0.4rem; }}
+  details.original summary {{
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    cursor: pointer;
+  }}
+  [lang="ca"] {{
+    font-size: 0.88rem;
+    color: #444;
+    max-width: 38em;
+  }}
+  [lang="ca"] p {{ margin: 0.4em 0; }}
+  .badge.parent {{ color: #2a7a6b; border-color: #2a7a6b; opacity: 1; }}
   tr.hidden, tr.hidden + tr.detail-row {{ display: none; }}
   .day.empty {{ display: none; }}
   footer {{
@@ -216,7 +316,9 @@ html = f"""<!DOCTYPE html>
   <p class="subtitle">25–29 czerwca 2026 · program wydarzeń</p>
   <div class="filters" id="filters">
     <button class="filter-btn active" data-cat="all" style="--c:#1a1a1a">Wszystkie</button>
+    {special_filter_buttons}
     {filter_buttons}
+    <button class="export-btn" id="export-btn" title="Skopiuj ID oznaczonych gwiazdką wydarzeń do schowka">Eksportuj ID ★</button>
   </div>
 </header>
 
@@ -224,10 +326,51 @@ html = f"""<!DOCTYPE html>
 
 <footer>
   190 wydarzeń · źródło: <a href="https://fmsantcugat.cat/">fmsantcugat.cat</a> ·
-  kliknij wydarzenie, aby rozwinąć opis (jeśli dostępny)
+  kliknij wydarzenie, aby rozwinąć opis · kliknij ☆, aby oznaczyć gwiazdką (zapisywane lokalnie w przeglądarce)
 </footer>
 
 <script>
+const STORAGE_KEY = 'fmajor-starred-v1';
+const DEFAULT_STARRED = {json.dumps(DEFAULT_STARRED)};
+
+function loadStarred() {{
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw === null) {{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_STARRED));
+    return new Set(DEFAULT_STARRED);
+  }}
+  try {{ return new Set(JSON.parse(raw)); }} catch {{ return new Set(); }}
+}}
+function saveStarred(set) {{
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+}}
+
+let starred = loadStarred();
+
+function applyStarredState() {{
+  document.querySelectorAll('tr.event').forEach(row => {{
+    const id = Number(row.dataset.id);
+    const isStarred = starred.has(id);
+    row.classList.toggle('starred', isStarred);
+    const btn = row.querySelector('.star-btn');
+    btn.textContent = isStarred ? '★' : '☆';
+  }});
+}}
+applyStarredState();
+
+document.querySelectorAll('.star-btn').forEach(btn => {{
+  btn.addEventListener('click', e => {{
+    e.stopPropagation();
+    const id = Number(btn.dataset.id);
+    if (starred.has(id)) {{ starred.delete(id); }} else {{ starred.add(id); }}
+    saveStarred(starred);
+    applyStarredState();
+    if (document.querySelector('.filter-btn.active')?.dataset.cat === '__starred__') {{
+      applyFilter('__starred__');
+    }}
+  }});
+}});
+
 document.querySelectorAll('tr.event').forEach(row => {{
   row.addEventListener('click', () => row.classList.toggle('open'));
   row.addEventListener('keydown', e => {{
@@ -236,20 +379,34 @@ document.querySelectorAll('tr.event').forEach(row => {{
 }});
 
 const filterBtns = document.querySelectorAll('.filter-btn');
+function applyFilter(cat) {{
+  document.querySelectorAll('tr.event').forEach(row => {{
+    let show;
+    if (cat === 'all') {{ show = true; }}
+    else if (cat === '__starred__') {{ show = row.classList.contains('starred'); }}
+    else {{ show = row.dataset.cats.split(' ').includes(cat); }}
+    row.classList.toggle('hidden', !show);
+  }});
+  document.querySelectorAll('.day').forEach(day => {{
+    const visible = day.querySelectorAll('tr.event:not(.hidden)').length > 0;
+    day.classList.toggle('empty', !visible);
+  }});
+}}
 filterBtns.forEach(btn => {{
   btn.addEventListener('click', () => {{
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const cat = btn.dataset.cat;
-    document.querySelectorAll('tr.event').forEach(row => {{
-      const cats = row.dataset.cats.split(' ');
-      const show = cat === 'all' || cats.includes(cat);
-      row.classList.toggle('hidden', !show);
-    }});
-    document.querySelectorAll('.day').forEach(day => {{
-      const visible = day.querySelectorAll('tr.event:not(.hidden)').length > 0;
-      day.classList.toggle('empty', !visible);
-    }});
+    applyFilter(btn.dataset.cat);
+  }});
+}});
+
+document.getElementById('export-btn').addEventListener('click', () => {{
+  const ids = JSON.stringify([...starred]);
+  navigator.clipboard.writeText(ids).then(() => {{
+    const btn = document.getElementById('export-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Skopiowano!';
+    setTimeout(() => {{ btn.textContent = original; }}, 1500);
   }});
 }});
 </script>
