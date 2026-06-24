@@ -15,7 +15,12 @@
       "Bash(git check-ignore *)",
       "Bash(echo \"ignored?:$?\")",
       "Bash(grep -vE)",
-      "Bash(git status *)"
+      "Bash(git status *)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_evaluate"
     ]
   },
   "enabledMcpjsonServers": [

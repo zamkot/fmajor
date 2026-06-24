@@ -10,17 +10,25 @@ from itertools import groupby
 with open("events_schedule.json", encoding="utf-8") as f:
     events = json.load(f)
 
-CATEGORY_COLORS = {
-    "Muzyka": "#a33",
-    "Popularne": "#3a6",
-    "Inne": "#888",
-    "Sportowe": "#36a",
-    "Dla dzieci": "#c80",
-    "Teatr/Taniec": "#838",
-    "Gastronomia": "#a73",
+# Keyed by the Polish label actually stored in categories_pl (the canonical field —
+# it's overwritten post-hoc by apply_auto_categories.py independent of category_slugs,
+# so category_slugs can't be trusted as a stable join key/translation lookup anymore).
+CATEGORY_INFO = {
+    "Muzyka": {"slug": "musica", "en": "Music", "color": "#a33"},
+    "Tradycje ludowe": {"slug": "populars", "en": "Folk traditions", "color": "#3a6"},
+    "Teatr/Taniec": {"slug": "teatre-dansa", "en": "Theatre/Dance", "color": "#838"},
+    "Gastronomia": {"slug": "gastronomiques", "en": "Food & drink", "color": "#a73"},
+    "Dla dzieci": {"slug": "infantils", "en": "For kids", "color": "#c80"},
+    "Sport": {"slug": "esportives", "en": "Sport", "color": "#36a"},
+    "Inne": {"slug": "altres", "en": "Other", "color": "#888"},
 }
+FALLBACK_CATEGORY_INFO = {"slug": "altres", "en": "Other", "color": "#666"}
 
-all_categories = sorted({c for e in events for c in e["categories_pl"]})
+all_category_labels = sorted({c for e in events for c in e["categories_pl"]})
+CATEGORY_TRANSLATIONS = {
+    CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["slug"]: {"pl": c, "en": CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["en"]}
+    for c in all_category_labels
+}
 
 # Seed value for localStorage on a visitor's first load — the user's initial picks:
 # Castellers, Correfoc (x2), Botifarrada (x2), "Paella" (Concurs d'Arrossos).
@@ -88,13 +96,14 @@ def render_description(e):
 
 
 def event_row(e):
-    cats = list(e["categories_pl"])
+    cat_slugs = [CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["slug"] for c in e["categories_pl"]]
     is_parent = e["id"] in PARENT_IDS
     if is_parent:
-        cats.append("__parents__")
-    cat_attr = escape(" ".join(cats))
+        cat_slugs.append("__parents__")
+    cat_attr = escape(" ".join(cat_slugs))
     badges = "".join(
-        f'<span class="badge" style="--c:{CATEGORY_COLORS.get(c, "#666")}">{escape(c)}</span>'
+        f'<span class="badge" data-i18n-cat="{CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["slug"]}" '
+        f'style="--c:{CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["color"]}">{escape(c)}</span>'
         for c in e["categories_pl"]
     )
     if is_parent:
@@ -135,8 +144,10 @@ for day, day_events in groupby(events_sorted, key=lambda e: e["date_pl"]):
     """)
 
 filter_buttons = "".join(
-    f'<button class="filter-btn" data-cat="{escape(c)}" style="--c:{CATEGORY_COLORS.get(c, "#666")}">{escape(c)}</button>'
-    for c in all_categories
+    f'<button class="filter-btn" data-cat="{CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["slug"]}" '
+    f'data-i18n-cat="{CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["slug"]}" '
+    f'style="--c:{CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["color"]}">{escape(c)}</button>'
+    for c in all_category_labels
 )
 special_filter_buttons = (
     '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b" data-i18n="filterStarred">★ Twoje wybrane</button>'
@@ -466,6 +477,7 @@ const HIDDEN_STORAGE_KEY = 'fmajor-hidden-v1';
 const LANG_STORAGE_KEY = 'fmajor-lang-v1';
 const DEFAULT_STARRED = {json.dumps(DEFAULT_STARRED)};
 const TRANSLATIONS = {json.dumps(TRANSLATIONS, ensure_ascii=False)};
+const CATEGORY_TRANSLATIONS = {json.dumps(CATEGORY_TRANSLATIONS, ensure_ascii=False)};
 
 function loadSet(key, defaults) {{
   const raw = localStorage.getItem(key);
@@ -509,6 +521,9 @@ function setLanguage(lang) {{
   }});
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {{
     el.placeholder = TRANSLATIONS[el.dataset.i18nPlaceholder][lang];
+  }});
+  document.querySelectorAll('[data-i18n-cat]').forEach(el => {{
+    el.textContent = CATEGORY_TRANSLATIONS[el.dataset.i18nCat][lang];
   }});
   document.querySelectorAll('.lang-btn').forEach(btn => {{
     btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -690,4 +705,4 @@ document.getElementById('export-want-btn').addEventListener('click', () => {{
 with open("schedule.html", "w", encoding="utf-8") as f:
     f.write(html)
 
-print(f"Wrote schedule.html ({len(events)} events, {len(all_categories)} categories)")
+print(f"Wrote schedule.html ({len(events)} events, {len(all_category_labels)} categories)")
