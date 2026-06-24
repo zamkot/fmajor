@@ -30,10 +30,6 @@ CATEGORY_TRANSLATIONS = {
     for c in all_category_labels
 }
 
-# Seed value for localStorage on a visitor's first load — the user's initial picks:
-# Castellers, Correfoc (x2), Botifarrada (x2), "Paella" (Concurs d'Arrossos).
-DEFAULT_STARRED = [1359, 1316, 1385, 1936, 1310, 1395]
-
 DESC_NOTE_PL = (
     '<p class="desc-note">Brak tłumaczenia — oryginał po katalońsku '
     "(kliknij prawym przyciskiem myszy i wybierz „Przetłumacz na polski”, "
@@ -564,7 +560,6 @@ const STORAGE_KEY = 'fmajor-starred-v1';
 const WANT_STORAGE_KEY = 'fmajor-wantgo-v1';
 const HIDDEN_STORAGE_KEY = 'fmajor-hidden-v1';
 const LANG_STORAGE_KEY = 'fmajor-lang-v1';
-const DEFAULT_STARRED = {json.dumps(DEFAULT_STARRED)};
 const TRANSLATIONS = {json.dumps(TRANSLATIONS, ensure_ascii=False)};
 const CATEGORY_TRANSLATIONS = {json.dumps(CATEGORY_TRANSLATIONS, ensure_ascii=False)};
 
@@ -714,7 +709,7 @@ document.querySelectorAll('.lang-btn').forEach(btn => {{
 }});
 setLanguage(getInitialLang());
 
-let starred = loadSet(STORAGE_KEY, DEFAULT_STARRED);
+let starred = loadSet(STORAGE_KEY, []);
 let wantToGo = loadSet(WANT_STORAGE_KEY, []);
 let hidden = loadSet(HIDDEN_STORAGE_KEY, []);
 
