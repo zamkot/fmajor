@@ -13,18 +13,15 @@ PAGES_URL="https://zamkot.github.io/fmajor/"
 ROOT="$(cd "$(dirname "$0")/../../../.." && pwd)"
 IDS="$(IFS=,; echo "$*")"
 
-TMP="$(mktemp -t fmajor_encode).js"
-trap 'rm -f "$TMP"' EXIT
-
 # Extract the share-payload encoder straight from build_html.py instead of
 # re-implementing it, so this can't drift if the encoding ever changes.
-sed -n '/const BASE62_CHARS/,/^function decodeSharePayload/p' "$ROOT/build_html.py" | sed '$d' > "$TMP"
-cat >> "$TMP" <<EOF
+{
+  sed -n '/const BASE62_CHARS/,/^function decodeSharePayload/p' "$ROOT/build_html.py" | sed '$d'
+  cat <<EOF
 const payload = encodeSharePayload([${IDS}], [], []);
 const url = new URL('${PAGES_URL}schedule.html');
 url.searchParams.set('share', payload);
 $([[ -n "$LABEL" ]] && echo "url.searchParams.set('by', $(node -e "console.log(JSON.stringify(process.argv[1]))" "$LABEL"));")
 console.log(url.toString());
 EOF
-
-node "$TMP"
+} | node -
