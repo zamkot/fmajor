@@ -134,11 +134,26 @@ events_sorted = sorted(events, key=lambda e: (e["sort_key"][0], e["sort_key"][1]
 day_sections = []
 for day, day_events in groupby(events_sorted, key=lambda e: e["date_pl"]):
     day_events = list(day_events)
+    day_en = day_events[0]["date_en"]
     rows = "\n".join(event_row(e) for e in day_events)
     day_sections.append(f"""
     <section class="day">
-      <h2>{escape(day)}</h2>
+      <h2>
+        <span class="day-date" data-lang="pl">{escape(day)}</span>
+        <span class="day-date" data-lang="en">{escape(day_en)}</span>
+      </h2>
       <table>
+        <thead>
+          <tr>
+            <th class="star-cell" title="Oznacz gwiazdką" data-i18n-title="starLabel">☆</th>
+            <th class="want-cell" title="Chcę pójść" data-i18n-title="wantLabel">♡</th>
+            <th class="hide-cell" title="Skryj to wydarzenie" data-i18n-title="hideTitle">⊘</th>
+            <th class="owner-group-header" colspan="3"></th>
+            <th class="time"></th>
+            <th class="title" data-i18n="colEvent">Wydarzenie</th>
+            <th class="loc" data-i18n="colLocation">Miejsce</th>
+          </tr>
+        </thead>
         <tbody>
           {rows}
         </tbody>
@@ -176,6 +191,8 @@ TRANSLATIONS = {
     "filterWantgo": {"pl": "♥ Chcę pójść", "en": "♥ Want to go"},
     "filterParents": {"pl": "👪 Dla rodziców", "en": "👪 For parents"},
     "filterHidden": {"pl": "⊘ Skryte", "en": "⊘ Hidden"},
+    "groupPersonal": {"pl": "Twoje listy:", "en": "My lists:"},
+    "groupCategory": {"pl": "Kategoria:", "en": "Category:"},
     "expandAll": {"pl": "Rozwiń wszystko", "en": "Expand all"},
     "expandAllTitle": {"pl": "Rozwiń opisy wszystkich wydarzeń", "en": "Expand all event descriptions"},
     "collapseAll": {"pl": "Zwiń wszystko", "en": "Collapse all"},
@@ -184,12 +201,18 @@ TRANSLATIONS = {
     "generateLinkTitle": {"pl": "Wygeneruj link z Twoimi wyborami do wysłania", "en": "Generate a shareable link with your picks"},
     "namePrompt": {"pl": "Twoje imię:", "en": "Your name:"},
     "anonymousName": {"pl": "Anonim", "en": "Friend"},
-    "syncDevice": {"pl": "Synchronizuj z tym urządzeniem", "en": "Sync to this device"},
-    "syncDeviceTitle": {"pl": "Dodaj wybory z linku do Twoich lokalnych wyborów na tym urządzeniu", "en": "Merge this link's picks into your own picks on this device"},
+    "syncDevicePrefix": {"pl": "Dodaj wybory: ", "en": "Add picks: "},
+    "syncDeviceTitlePrefix": {"pl": "Jednorazowo doda wybory ", "en": "One-time merge of "},
+    "syncDeviceTitleSuffix": {
+        "pl": " do Twoich własnych na tym urządzeniu (nie da się łatwo odwrócić)",
+        "en": "'s picks into your own on this device (not easily reversible)",
+    },
     "shareHeaderPrefix": {"pl": "Lista: ", "en": "List: "},
     "shareNote": {"pl": " — fioletowe kolumny pokazują wybory: ", "en": " — purple columns show "},
     "shareNoteSuffix": {"pl": "", "en": "'s picks"},
     "ownerFilterPrefix": {"pl": "👀 Wybory: ", "en": "👀 Picks: "},
+    "colEvent": {"pl": "Wydarzenie", "en": "Event"},
+    "colLocation": {"pl": "Miejsce", "en": "Location"},
     "starLabel": {"pl": "Oznacz gwiazdką", "en": "Star this event"},
     "wantLabel": {"pl": "Chcę pójść", "en": "Want to go"},
     "hideAria": {"pl": "Skryj", "en": "Hide"},
@@ -254,6 +277,20 @@ html = f"""<!DOCTYPE html>
     gap: 0.4rem;
     align-items: center;
   }}
+  .filter-group {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    margin-top: 0.5rem;
+  }}
+  .filter-group-label {{
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-right: 0.1rem;
+  }}
   .filter-btn {{
     font-family: var(--serif);
     font-size: 0.78rem;
@@ -266,9 +303,14 @@ html = f"""<!DOCTYPE html>
     opacity: 0.55;
     transition: opacity 0.15s;
   }}
-  .filter-btn.active {{ opacity: 1; background: color-mix(in srgb, var(--c) 12%, transparent); }}
+  .filter-btn.active {{ opacity: 1; background: color-mix(in srgb, var(--c) 22%, transparent); border-width: 2px; }}
   .filter-btn:hover {{ opacity: 0.85; }}
-  .filter-btn.special {{ font-weight: bold; }}
+  .filter-btn.special {{
+    font-weight: bold;
+    background: color-mix(in srgb, var(--c) 10%, transparent);
+    border-radius: 1rem;
+  }}
+  .filter-btn.special.active {{ background: color-mix(in srgb, var(--c) 28%, transparent); }}
   .lang-toggle {{
     margin-top: 0.8rem;
     display: flex;
@@ -298,12 +340,21 @@ html = f"""<!DOCTYPE html>
     width: 9rem;
   }}
   .search-input:focus {{ outline: none; border-color: var(--ink-light); }}
+  .toolbar {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--rule);
+  }}
+  .toolbar-spacer {{ margin-left: auto; }}
   .export-btn {{
-    margin-left: auto;
     font-family: var(--serif);
     font-size: 0.75rem;
     color: var(--ink-light);
-    background: transparent;
+    background: #f3f1ec;
     border: 1px solid var(--rule);
     border-radius: 2px;
     padding: 0.2rem 0.6rem;
@@ -323,6 +374,29 @@ html = f"""<!DOCTYPE html>
     margin-bottom: 0;
   }}
   table {{ width: 100%; border-collapse: collapse; }}
+  thead th {{
+    font-family: var(--serif);
+    font-weight: normal;
+    font-size: 0.68rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+    padding: 0.2rem 0.3rem 0.4rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    cursor: default;
+  }}
+  thead th.star-cell, thead th.want-cell, thead th.hide-cell, thead th.owner-group-header {{ text-align: center; }}
+  thead th.loc {{ text-align: right; }}
+  thead th.owner-group-header {{
+    display: none;
+    color: var(--owner-color);
+    font-weight: bold;
+  }}
+  body.share-mode thead th.owner-group-header {{ display: table-cell; }}
   tr.event td {{
     padding: 0.55rem 0.3rem;
     border-bottom: 1px solid #eee;
@@ -456,6 +530,9 @@ html = f"""<!DOCTYPE html>
   .desc-lang {{ display: none; }}
   html[lang="pl"] .desc-lang[data-lang="pl"] {{ display: block; }}
   html[lang="en"] .desc-lang[data-lang="en"] {{ display: block; }}
+  .day-date {{ display: none; }}
+  html[lang="pl"] .day-date[data-lang="pl"] {{ display: inline; }}
+  html[lang="en"] .day-date[data-lang="en"] {{ display: inline; }}
   .badge.parent {{ color: #2a7a6b; border-color: #2a7a6b; opacity: 1; }}
   tr.hidden, tr.hidden + tr.detail-row {{ display: none; }}
   .day.empty {{ display: none; }}
@@ -480,11 +557,19 @@ html = f"""<!DOCTYPE html>
   <div class="filters" id="filters">
     <input type="search" id="search-input" class="search-input" placeholder="Szukaj…" aria-label="Szukaj wydarzeń" data-i18n-placeholder="searchPlaceholder" data-i18n-aria="searchPlaceholder">
     <button class="filter-btn active" data-cat="all" style="--c:#1a1a1a" data-i18n="filterAll">Wszystkie</button>
+  </div>
+  <div class="filter-group" id="personal-filters">
+    <span class="filter-group-label" data-i18n="groupPersonal">Twoje listy:</span>
     {special_filter_buttons}
+  </div>
+  <div class="filter-group" id="category-filters">
+    <span class="filter-group-label" data-i18n="groupCategory">Kategoria:</span>
     {filter_buttons}
+  </div>
+  <div class="toolbar" id="toolbar">
     <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń" data-i18n="expandAll" data-i18n-title="expandAllTitle">Rozwiń wszystko</button>
     <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń" data-i18n="collapseAll" data-i18n-title="collapseAllTitle">Zwiń wszystko</button>
-    <button class="export-btn" id="generate-link-btn" title="Wygeneruj link z Twoimi wyborami do wysłania" data-i18n="generateLink" data-i18n-title="generateLinkTitle">Generuj link</button>
+    <button class="export-btn toolbar-spacer" id="generate-link-btn" title="Wygeneruj link z Twoimi wyborami do wysłania" data-i18n="generateLink" data-i18n-title="generateLinkTitle">Generuj link</button>
   </div>
 </header>
 
@@ -628,6 +713,15 @@ function refreshShareUI() {{
   if (ownerFilterBtn) {{
     ownerFilterBtn.textContent = TRANSLATIONS.ownerFilterPrefix[currentLang] + shareData.name;
   }}
+  document.querySelectorAll('.owner-group-header').forEach(th => {{
+    th.textContent = shareData.name;
+  }});
+  const syncBtn = document.getElementById('sync-btn');
+  if (syncBtn) {{
+    syncBtn.textContent = TRANSLATIONS.syncDevicePrefix[currentLang] + shareData.name;
+    syncBtn.title = TRANSLATIONS.syncDeviceTitlePrefix[currentLang] + shareData.name
+      + TRANSLATIONS.syncDeviceTitleSuffix[currentLang];
+  }}
 }}
 
 let shareData = getShareDataFromUrl();
@@ -675,15 +769,14 @@ function initShareMode() {{
   ownerFilterBtn.id = 'owner-filter-btn';
   ownerFilterBtn.dataset.cat = '__ownertouched__';
   ownerFilterBtn.style.setProperty('--c', '#a335d9');
-  document.getElementById('filters').appendChild(ownerFilterBtn);
+  document.getElementById('personal-filters').appendChild(ownerFilterBtn);
 
   const syncBtn = document.createElement('button');
   syncBtn.className = 'export-btn';
   syncBtn.id = 'sync-btn';
-  syncBtn.dataset.i18n = 'syncDevice';
-  syncBtn.dataset.i18nTitle = 'syncDeviceTitle';
-  syncBtn.textContent = TRANSLATIONS.syncDevice[currentLang];
-  syncBtn.title = TRANSLATIONS.syncDeviceTitle[currentLang];
+  syncBtn.textContent = TRANSLATIONS.syncDevicePrefix[currentLang] + shareData.name;
+  syncBtn.title = TRANSLATIONS.syncDeviceTitlePrefix[currentLang] + shareData.name
+    + TRANSLATIONS.syncDeviceTitleSuffix[currentLang];
   syncBtn.addEventListener('click', () => {{
     shareData.starred.forEach(id => starred.add(id));
     shareData.want.forEach(id => wantToGo.add(id));
@@ -695,9 +788,11 @@ function initShareMode() {{
     applyFilter();
     const original = syncBtn.textContent;
     syncBtn.textContent = TRANSLATIONS.copied[currentLang];
-    setTimeout(() => {{ syncBtn.textContent = TRANSLATIONS.syncDevice[currentLang]; }}, 1500);
+    setTimeout(() => {{
+      syncBtn.textContent = TRANSLATIONS.syncDevicePrefix[currentLang] + shareData.name;
+    }}, 1500);
   }});
-  document.getElementById('filters').appendChild(syncBtn);
+  document.getElementById('toolbar').appendChild(syncBtn);
 
   refreshShareUI();
 }}

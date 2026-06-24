@@ -27,6 +27,20 @@ MONTH_PL = {
     "juny": "czerwca",
 }
 
+WEEKDAY_EN = {
+    "dilluns": "Monday",
+    "dimarts": "Tuesday",
+    "dimecres": "Wednesday",
+    "dijous": "Thursday",
+    "divendres": "Friday",
+    "dissabte": "Saturday",
+    "diumenge": "Sunday",
+}
+
+MONTH_EN = {
+    "juny": "June",
+}
+
 CATEGORY_PL = {
     "musica": "Muzyka",
     "populars": "Tradycje ludowe",
@@ -42,18 +56,20 @@ DATE_RE = re.compile(r"(\w+)\s+(\d{1,2})\s+de\s+(\w+)", re.IGNORECASE)
 TIME_RE = re.compile(r"(\d{1,2}):(\d{2})")
 
 
-def parse_date(date_raw: str | None) -> tuple[int, str]:
-    """Returns (day_number_for_sorting, polish_date_label)."""
+def parse_date(date_raw: str | None) -> tuple[int, str, str]:
+    """Returns (day_number_for_sorting, polish_date_label, english_date_label)."""
     if not date_raw:
-        return (99, "brak daty")
+        return (99, "brak daty", "no date")
     m = DATE_RE.search(date_raw)
     if not m:
-        return (99, date_raw)
+        return (99, date_raw, date_raw)
     weekday_ca, day, month_ca = m.groups()
     day = int(day)
     weekday_pl = WEEKDAY_PL.get(weekday_ca.lower(), weekday_ca)
     month_pl = MONTH_PL.get(month_ca.lower(), month_ca)
-    return (day, f"{weekday_pl}, {day} {month_pl}")
+    weekday_en = WEEKDAY_EN.get(weekday_ca.lower(), weekday_ca)
+    month_en = MONTH_EN.get(month_ca.lower(), month_ca)
+    return (day, f"{weekday_pl}, {day} {month_pl}", f"{weekday_en}, {month_en} {day}")
 
 
 def parse_time(time_raw: str | None) -> tuple[int, str]:
@@ -73,7 +89,7 @@ def main():
 
     enriched = []
     for e in raw_events:
-        day_num, date_pl = parse_date(e["date_raw"])
+        day_num, date_pl, date_en = parse_date(e["date_raw"])
         minutes, time_pl = parse_time(e["time_raw"])
         categories_pl = [CATEGORY_PL.get(c, c) for c in e["category_slugs"]] or ["Inne"]
 
@@ -83,6 +99,7 @@ def main():
                 "title": html.unescape(e["title"]),
                 "url": e["url"],
                 "date_pl": date_pl,
+                "date_en": date_en,
                 "time_pl": time_pl,
                 "location": html.unescape(e["location_raw"]) if e["location_raw"] else "(brak lokalizacji)",
                 "category_slugs": e["category_slugs"],
