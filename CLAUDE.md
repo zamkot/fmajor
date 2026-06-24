@@ -80,6 +80,11 @@ scrape_events.py  --(network, slow, ~190 page fetches)-->  events_raw.json
   script in the style of `translate_picks.py` (don't hand-edit the JSON directly — it's
   regenerated/large), then re-run `build_html.py`.
 
+## Git workflow
+
+- Only fast-forward merges onto `main` — no merge commits. When integrating a worktree
+  branch, rebase/cherry-pick it onto `main`'s tip first if needed, then fast-forward.
+
 ## Tool conventions
 
 - For one-shot JSON inspection/filtering, prefer `jq`.
