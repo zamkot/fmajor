@@ -1,0 +1,3612 @@
+[
+  {
+    "id": 1284,
+    "title": "Dj Tofu",
+    "url": "https://fmsantcugat.cat/musica/dj-tofu/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "00:45",
+    "location": "Parc de Ramon Barnils",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      45
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2411,
+    "title": "Pizza week: a cavallo",
+    "url": "https://fmsantcugat.cat/gastronomiques/pizza-week-a-cavallo/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "19:00",
+    "location": "Masia Can Domènech",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      25,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1268,
+    "title": "Seguici d’inici de Festa Major",
+    "url": "https://fmsantcugat.cat/populars/seguici-dinici/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "19:00",
+    "location": "Avinguda de Cerdanyola",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      25,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1269,
+    "title": "Pregó de Festa Major",
+    "url": "https://fmsantcugat.cat/populars/prego/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "20:15",
+    "location": "Plaça de la Vila",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      25,
+      1215
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1861,
+    "title": "Fira d’atraccions",
+    "url": "https://fmsantcugat.cat/altres/fira-datraccions-3/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "20:30",
+    "location": "Parc de la Pollancreda",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      25,
+      1230
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1278,
+    "title": "Festa Major al carrer Hospital",
+    "url": "https://fmsantcugat.cat/musica/fm-carrer-hospital/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "20:30",
+    "location": "Carrer de l’Hospital",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1230
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1270,
+    "title": "Pop al Cor, en concert",
+    "url": "https://fmsantcugat.cat/musica/pop-al-cor/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "20:30",
+    "location": "Amfiteatre dels Jardins del Vallès",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1230
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1273,
+    "title": "Cobla Orquestra Montgrins, en concert",
+    "url": "https://fmsantcugat.cat/musica/cobla-montgrins/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "21:30",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1290
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1277,
+    "title": "Batega: Gospel Beat, en concert",
+    "url": "https://fmsantcugat.cat/musica/batega-gospel-beat/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "22:00",
+    "location": "Amfiteatre dels Jardins del Vallès",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1276,
+    "title": "Esbart Sant Cugat: “Condemnades a dansar”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/esbart-condemnades-a-dansar/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de la Vila",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      25,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1275,
+    "title": "Música al Xiringuit-U: Blueroomess",
+    "url": "https://fmsantcugat.cat/musica/musica-al-xiringuit-u/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de l’U d’Octubre",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1274,
+    "title": "Jazz. Colina Miralta Sambeat Trio",
+    "url": "https://fmsantcugat.cat/musica/jazz-colina-miralta-sambeat/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de Can Quitèria",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1279,
+    "title": "Dansa. La Tacones: “Fin de Fiesta”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/la-tacones-fin-de-fiesta/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "22:30",
+    "location": "Celler Modernista",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      25,
+      1350
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1318,
+    "title": "Esbart Sant Cugat: “Condemnades a dansar”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/esbart-mediterrania/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "22:45",
+    "location": "Plaça de la Vila",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      25,
+      1365
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1283,
+    "title": "Please, tribut a U2, en concert",
+    "url": "https://fmsantcugat.cat/musica/please-tribut-u2/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "23:00",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1380
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1280,
+    "title": "Ball amb la Cobla Orquestra Montgrins",
+    "url": "https://fmsantcugat.cat/musica/ball-cobla-montgrins/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "23:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1380
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1282,
+    "title": "Ginestà, en concert",
+    "url": "https://fmsantcugat.cat/musica/ginesta/",
+    "date_pl": "czwartek, 25 czerwca",
+    "time_pl": "23:15",
+    "location": "Parc de Ramon Barnils – Parc Jove",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      25,
+      1395
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1325,
+    "title": "Escenari La Pua: Robot Robert",
+    "url": "https://fmsantcugat.cat/musica/robot-robert/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "00:00",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      0
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1324,
+    "title": "Live Karaoke Show amb De Mortimers",
+    "url": "https://fmsantcugat.cat/musica/karaoke/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "00:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      0
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1326,
+    "title": "The Tyets, en concert",
+    "url": "https://fmsantcugat.cat/musica/the-tyets/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "00:45",
+    "location": "Parc de Ramon Barnils",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      45
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1328,
+    "title": "Escenari La Pua: Dj Olau",
+    "url": "https://fmsantcugat.cat/musica/dj-olau/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "01:30",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      90
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1329,
+    "title": "Dj Marc Navarro",
+    "url": "https://fmsantcugat.cat/musica/dj-marc-navarro/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "02:00",
+    "location": "Parc de Ramon Barnils – Parc Jove",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      120
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1327,
+    "title": "Big Mouthers, en concert",
+    "url": "https://fmsantcugat.cat/musica/big-mouthers/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "02:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      120
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1285,
+    "title": "Torneig de pàdel inclusiu",
+    "url": "https://fmsantcugat.cat/esportives/padel-inclusiu/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "09:00",
+    "location": "ZEM Jaume Tubau",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      540
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1286,
+    "title": "Benvingut estiu de Casa Aymat",
+    "url": "https://fmsantcugat.cat/altres/benvingut-estiu-casa-aymat/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "10:00",
+    "location": "Casa Aymat. Espai de Creació",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      26,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1287,
+    "title": "Jocs a l’ombra",
+    "url": "https://fmsantcugat.cat/infantils/jocs-a-lombra/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "10:30",
+    "location": "Passeig de Gaudí",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      26,
+      630
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1288,
+    "title": "Estand La Teulada: experts en energia solar",
+    "url": "https://fmsantcugat.cat/altres/la-teulada/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "11:00",
+    "location": "Plaça dels Quatre Cantons",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      26,
+      660
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1289,
+    "title": "Aula Jazz Orchestra, en concert",
+    "url": "https://fmsantcugat.cat/musica/aula-jazz-orchestra/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "12:30",
+    "location": "Celler Modernista",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      750
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1290,
+    "title": "Joc: Crim a l’arxiu",
+    "url": "https://fmsantcugat.cat/infantils/crim-a-larxiu/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "16:00",
+    "location": "Ajuntament- Arxiu Municipal",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      26,
+      960
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1291,
+    "title": "Torneig d’handbol platja",
+    "url": "https://fmsantcugat.cat/esportives/handbol-platja/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "16:30",
+    "location": "Parc de Can Vernet",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      990
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1899,
+    "title": "Partit de Festa Major Periodistes vs Polítics",
+    "url": "https://fmsantcugat.cat/esportives/partit-de-festa-major-periodistes-vs-politics/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "17:00",
+    "location": "ZEM Rbla. del Celler – Pav.3",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1292,
+    "title": "2n Torneig d’escacs de Festa Major",
+    "url": "https://fmsantcugat.cat/esportives/torneig-escacs-fm/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "17:00",
+    "location": "Plaça de Magí Bartralot",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1271,
+    "title": "Fira d’atraccions",
+    "url": "https://fmsantcugat.cat/altres/fira-datraccions/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "17:00",
+    "location": "Parc de la Pollancreda",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      26,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2416,
+    "title": "Pizza week: futuro manuale",
+    "url": "https://fmsantcugat.cat/gastronomiques/pizza-week-futuro-manuale/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "Mecànic Pizza",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1916,
+    "title": "Festa de l’Esport al Carrer",
+    "url": "https://fmsantcugat.cat/esportives/festa-de-lesport-al-carrer/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1912,
+    "title": "Ball d’avis amb el Duo Montal",
+    "url": "https://fmsantcugat.cat/altres/ball-davis-amb-el-duo-montal/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "Jardins de Can Gatxet (c. de Valldoreix, 9)",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1907,
+    "title": "Maridatge de Festa Major: mostra de cuina amb vins i combinats",
+    "url": "https://fmsantcugat.cat/gastronomiques/maridatge-de-festa-major-mostra-de-cuina-amb-vins-i-combinats/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "Terrassa Bar Bocamoll",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1301,
+    "title": "Torneig nocturn de F7",
+    "url": "https://fmsantcugat.cat/esportives/torneig-f7-nocturn/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "ZEM Jaume Tubau",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1299,
+    "title": "Exhibicions de gimnàstica rítmica",
+    "url": "https://fmsantcugat.cat/esportives/gimnastica-ritmica/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "Pistes de bàsquet del Parc Central",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1297,
+    "title": "Joc: Crim a l’arxiu",
+    "url": "https://fmsantcugat.cat/infantils/crim-a-larxiu-2a/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "Ajuntament – Arxiu Municipal",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1296,
+    "title": "Jazzin’ Time, concert inclusiu",
+    "url": "https://fmsantcugat.cat/musica/jazzintime-inclusiu/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "Celler Modernista",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1294,
+    "title": "Espai de creació artística Windown als jardins del Monestir",
+    "url": "https://fmsantcugat.cat/altres/espai-windown/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:00",
+    "location": "Jardins del Monestir (davant Casa de Cultura)",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      26,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1302,
+    "title": "FM League. Torneig nocturn",
+    "url": "https://fmsantcugat.cat/esportives/fm-league-10-14a/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "18:30",
+    "location": "ZEM Rambla del Celler- Pav. 1, Pav. 2, Pav. 3",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      1110
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1924,
+    "title": "Taller de pancartes per l’Orgull LGBTI+",
+    "url": "https://fmsantcugat.cat/altres/taller-de-pancartes-per-lorgull-lgbti/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "19:00",
+    "location": "Plaça de Lluís Millet",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      26,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1305,
+    "title": "Total Body",
+    "url": "https://fmsantcugat.cat/esportives/total-body/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "19:00",
+    "location": "Rambla del Celler",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1304,
+    "title": "XII Torneig de Petanca Ciutat de Sant Cugat",
+    "url": "https://fmsantcugat.cat/esportives/torneig-petanca/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "19:00",
+    "location": "Pistes de petanca del Parc de la Pollancreda",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      26,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1303,
+    "title": "Baixada d’andròmines",
+    "url": "https://fmsantcugat.cat/altres/baixada-dandromines/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "19:00",
+    "location": "Passeig de Francesc Macià",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      26,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1308,
+    "title": "Viatge a l’Àfrica: música, dansa i interculturalitat",
+    "url": "https://fmsantcugat.cat/musica/viatge-a-lafrica/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "19:30",
+    "location": "Plaça d’en Coll",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1170
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1307,
+    "title": "Teatre. Els Pocavergonya",
+    "url": "https://fmsantcugat.cat/teatre-dansa/teatre-pocavergonya/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "19:30",
+    "location": "Celler Modernista",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      26,
+      1170
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1306,
+    "title": "Batucada orgullosa!",
+    "url": "https://fmsantcugat.cat/musica/batucada-orgull/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "19:30",
+    "location": "Plaça de Lluís Millet",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1170
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1936,
+    "title": "Botifarrada popular",
+    "url": "https://fmsantcugat.cat/gastronomiques/botifarrada-popularhandbol-sant-cugat/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "20:00",
+    "location": "Parc de Can Vernet",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      26,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1312,
+    "title": "Backline Choir, en concert",
+    "url": "https://fmsantcugat.cat/musica/backline-choir/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "20:00",
+    "location": "Amfiteatre dels Jardins del Vallès",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1311,
+    "title": "Celebració Orgull LGTBI+",
+    "url": "https://fmsantcugat.cat/musica/orgull-lgtbi/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "20:00",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1310,
+    "title": "Botifarrada popular",
+    "url": "https://fmsantcugat.cat/gastronomiques/botifarrada/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "20:00",
+    "location": "Jardins del Monestir – Carrer de Castellví",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      26,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1309,
+    "title": "Dansa. Radicel·la: “Horabaixa”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/dansa-horabaixa/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "20:00",
+    "location": "Plaça d’Octavià – Espai d’Arrel",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      26,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1315,
+    "title": "Malabarada i versots infantils",
+    "url": "https://fmsantcugat.cat/populars/malabarada-infantil/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "20:30",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      26,
+      1230
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1316,
+    "title": "Correfoc infantil i jove de Festa Major  ",
+    "url": "https://fmsantcugat.cat/populars/correfoc-jove/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "21:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      26,
+      1260
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1945,
+    "title": "Música al Xiringuit-U: Andrea Calderón & Jazzin’ Time",
+    "url": "https://fmsantcugat.cat/musica/musica-al-xiringuit-u-andrea-calderon-jazzin-time/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de l’U d’Octubre",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1322,
+    "title": "Cinema a la fresca: “Olívia i el terratrèmol invisible”",
+    "url": "https://fmsantcugat.cat/infantils/cinema-olivia/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "22:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      26,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1321,
+    "title": "Escenari La Pua: Slands Project",
+    "url": "https://fmsantcugat.cat/musica/slands-project/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1319,
+    "title": "Cor de Gospel Sant Cugat, en concert",
+    "url": "https://fmsantcugat.cat/musica/gospel-sant-cugat/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "22:00",
+    "location": "Amfiteatre dels Jardins del Vallès",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1317,
+    "title": "Jazz. Alba Careta Group",
+    "url": "https://fmsantcugat.cat/musica/jazz-alba-careta/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de Can Quitèria",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2487,
+    "title": "Esbart Mediterrània: dansa d’arrel tradicional",
+    "url": "https://fmsantcugat.cat/teatre-dansa/esbart-mediterrania-dansa-darrel-tradicional/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "22:30",
+    "location": "Plaça de l’Om",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      26,
+      1350
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1323,
+    "title": "Indubio, en concert",
+    "url": "https://fmsantcugat.cat/musica/indubio/",
+    "date_pl": "piątek, 26 czerwca",
+    "time_pl": "23:00",
+    "location": "Parc de Ramon Barnils – Parc Jove",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      26,
+      1380
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1387,
+    "title": "Escenari La Pua: Pubilles Ninja",
+    "url": "https://fmsantcugat.cat/musica/pubilles-ninja/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "00:00",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      0
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1388,
+    "title": "Versots i Esclat de foc",
+    "url": "https://fmsantcugat.cat/populars/versots-i-foc/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "00:30",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      30
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1389,
+    "title": "Coco, en concert",
+    "url": "https://fmsantcugat.cat/musica/coco/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "00:45",
+    "location": "Parc de Ramon Barnils",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      45
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2077,
+    "title": "Dj Pilar Felices",
+    "url": "https://fmsantcugat.cat/musica/dj-pilar-felices-2/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "01:30",
+    "location": "Plaça de Can Quitèria",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      90
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1392,
+    "title": "Escenari La Pua: Dj Eneida Fever!",
+    "url": "https://fmsantcugat.cat/musica/dj-eneida/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "01:30",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      90
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1390,
+    "title": "Tapeo Sound System, en concert",
+    "url": "https://fmsantcugat.cat/musica/tapeo-sound-system/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "01:30",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      90
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1393,
+    "title": "Dj Martí",
+    "url": "https://fmsantcugat.cat/musica/dj-marti/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "02:00",
+    "location": "Parc de Ramon Barnils",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      120
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1333,
+    "title": "La botiga al carrer",
+    "url": "https://fmsantcugat.cat/altres/botiga-al-carrer/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "09:00",
+    "location": "Eix comercial del Centre Ciutat",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      540
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1332,
+    "title": "Campionat d’Espanya d’Esgrima",
+    "url": "https://fmsantcugat.cat/esportives/campionat-esgrima/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "09:00",
+    "location": "ZEM La Guinardera",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      540
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1331,
+    "title": "Torneig solidari de bàsquet 3×3",
+    "url": "https://fmsantcugat.cat/esportives/basquet-3x3-solidari/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "09:00",
+    "location": "ZEM Rambla del Celler – PAV3",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      540
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1330,
+    "title": "Exhibició i pràctica de tir amb arc als Jardins del Monestir",
+    "url": "https://fmsantcugat.cat/esportives/tir-amb-arc/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "09:00",
+    "location": "Jardins del Monestir",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      540
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1968,
+    "title": "Exposició interactiva: Medi ambient i pau",
+    "url": "https://fmsantcugat.cat/altres/exposicio-interactiva-medi-ambient-i-pau/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "10:00",
+    "location": "Rambla del Celler",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1300,
+    "title": "Festa de l’Esport al Carrer",
+    "url": "https://fmsantcugat.cat/esportives/festa-esport-carrer/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "10:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1337,
+    "title": "Partides simultànies d’escacs",
+    "url": "https://fmsantcugat.cat/esportives/torneig-escacs/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "10:00",
+    "location": "Jardins Monestir",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1335,
+    "title": "Monestir de Sant Cugat. El més poderós del comtat de Barcelona",
+    "url": "https://fmsantcugat.cat/altres/visita-monestir/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "10:00",
+    "location": "Oficina de Turisme",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1334,
+    "title": "Pedalada familiar",
+    "url": "https://fmsantcugat.cat/esportives/pedalada-familiar/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "10:00",
+    "location": "Parc Central (c. Manel Farrés cantonada c. Rovellat)",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1972,
+    "title": "Festival “Petits! Grans! Llibres!” al Claustre",
+    "url": "https://fmsantcugat.cat/infantils/festival-petits-grans-llibres-al-claustre/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "10:30",
+    "location": "Museu de Sant Cugat",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      27,
+      630
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1339,
+    "title": "Tallers a l’ombra",
+    "url": "https://fmsantcugat.cat/infantils/tallers-artistics/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "10:30",
+    "location": "Passeig de Gaudí",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      27,
+      630
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1338,
+    "title": "Tallers a l’Ombra: taller de cuina Experiència Mastercook",
+    "url": "https://fmsantcugat.cat/infantils/mastercook-cuina/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "10:30",
+    "location": "Passeig de Gaudí",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      27,
+      630
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1342,
+    "title": "Ball de Caparrots",
+    "url": "https://fmsantcugat.cat/populars/ball-de-caparrots/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "11:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      660
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1341,
+    "title": "XXIII Concentració i passejada de motos",
+    "url": "https://fmsantcugat.cat/altres/motos/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "11:00",
+    "location": "Plaça de Sant Francesc",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      660
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1400,
+    "title": "Exhibició dels Sbandieratori Borgo San Lorenzo (Alba, Itàlia)",
+    "url": "https://fmsantcugat.cat/populars/sbandieratori/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "11:15",
+    "location": "Plaça d’Octavià – Espai d’Arrel",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      675
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1344,
+    "title": "Visita guiada Els sants de l’estiu",
+    "url": "https://fmsantcugat.cat/altres/visita-sants-estiu/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "11:30",
+    "location": "Museu de Sant Cugat",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      690
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1347,
+    "title": "Torneig de globus",
+    "url": "https://fmsantcugat.cat/esportives/torneig-de-globus/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "12:00",
+    "location": "Sala Clavé – La Unió Centre Cultural",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      720
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1346,
+    "title": "Vermut musical de Festa Major",
+    "url": "https://fmsantcugat.cat/gastronomiques/vermut-musical/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "12:00",
+    "location": "Plaça dels Tres Pous",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      27,
+      720
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1345,
+    "title": "Tallers a l’Ombra: taller de cuina Experiència Mastercook",
+    "url": "https://fmsantcugat.cat/infantils/mastercook-2a-sessio/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "12:00",
+    "location": "Passeig de Gaudí",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      27,
+      720
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2009,
+    "title": "Orquestra Moderna Fusió, en concert",
+    "url": "https://fmsantcugat.cat/musica/orquestra-moderna-fusio-en-concert/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "12:30",
+    "location": "Celler Modernista",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      750
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1349,
+    "title": "Triangular 1r equip Penya Blaugrana",
+    "url": "https://fmsantcugat.cat/esportives/triangular-penya-b/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "16:00",
+    "location": "Camp de futbol de Can Magí",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      960
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1351,
+    "title": "Fumada lenta de pipa 2026",
+    "url": "https://fmsantcugat.cat/altres/fumada-de-pipa/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "16:30",
+    "location": "Pati de L’Ateneu",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      990
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1350,
+    "title": "IV Torneig de Rugbi Platja",
+    "url": "https://fmsantcugat.cat/esportives/rugbi-platja/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "16:30",
+    "location": "Parc de Can Vernet",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      990
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2024,
+    "title": "Fira d’atraccions",
+    "url": "https://fmsantcugat.cat/altres/fira-datraccions-4/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "17:00",
+    "location": "Parc de la Pollancreda",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2018,
+    "title": "Torneig d’escacs de partides ràpides als Jardins del Monestir",
+    "url": "https://fmsantcugat.cat/esportives/torneig-descacs-de-partides-rapides-als-jardins-del-monestir/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "17:00",
+    "location": "Jardins del Monestir",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1355,
+    "title": "Pintxopote Euskaldun",
+    "url": "https://fmsantcugat.cat/gastronomiques/pintxopote/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "17:00",
+    "location": "Jardins de la Festa de Tardor",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      27,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1352,
+    "title": "A la Llar la Festa Major… fa furor!",
+    "url": "https://fmsantcugat.cat/altres/comedia-la-llar/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "17:00",
+    "location": "Llar d’avis de la Parròquia",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1340,
+    "title": "Festival “Petits! Grans! Llibres!” al Claustre",
+    "url": "https://fmsantcugat.cat/infantils/petits-grans-llibres/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "17:00",
+    "location": "Museu de Sant Cugat",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      27,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2032,
+    "title": "Festa de l’Esport al Carrer",
+    "url": "https://fmsantcugat.cat/esportives/festa-de-lesport-al-carrer-2/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "18:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1358,
+    "title": "38a Trobada gegantera: plantada de gegants",
+    "url": "https://fmsantcugat.cat/populars/trobada-gegantera/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "18:00",
+    "location": "Av. de Cerdanyola-Jardins del Vallès",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1359,
+    "title": "XXIX Diada Castellera de Festa Major",
+    "url": "https://fmsantcugat.cat/populars/diada-castellera/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "18:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1357,
+    "title": "Contes i llegendes per a petits i no tan petits",
+    "url": "https://fmsantcugat.cat/infantils/contes-petits/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "18:00",
+    "location": "Plaça dels Tres Pous",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      27,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1295,
+    "title": "Maridatge de Festa Major: mostra de cuina amb cerveses i vins",
+    "url": "https://fmsantcugat.cat/gastronomiques/maridatge/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "18:00",
+    "location": "Terrassa Bar Bocamoll",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      27,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1272,
+    "title": "FM Alternativa",
+    "url": "https://fmsantcugat.cat/altres/fm-alternativa/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "18:00",
+    "location": "Parc Can Vernet",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1362,
+    "title": "Concert coral tradicional de Festa Major",
+    "url": "https://fmsantcugat.cat/musica/concert-coral/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "18:30",
+    "location": "Sala Clavé",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1110
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1363,
+    "title": "Lindy hop: classes obertes de solo jazz, lindy hop i blues",
+    "url": "https://fmsantcugat.cat/teatre-dansa/lindy-hop/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "18:45",
+    "location": "Plaça de Can Quitèria",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      27,
+      1125
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2039,
+    "title": "38a Trobada gegantera: cercavila de gegants",
+    "url": "https://fmsantcugat.cat/populars/38a-trobada-gegantera-cercavila-de-gegants/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "19:00",
+    "location": "Av. de Cerdanyola",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1365,
+    "title": "XXV Tast de vins amb ritme!",
+    "url": "https://fmsantcugat.cat/gastronomiques/tast-de-vins/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "19:00",
+    "location": "Celler Modernista",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      27,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1364,
+    "title": "Escola Sant Cugat: “Ball a ball, fem festa!”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/escola-sc-ball/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "19:00",
+    "location": "Pistes de bàsquet del Parc Central",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      27,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1354,
+    "title": "Vetllada de boxa",
+    "url": "https://fmsantcugat.cat/esportives/vetllada-boxa/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "19:00",
+    "location": "Parc de Can Vernet",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      27,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1367,
+    "title": "Rua de balls tradicionals: de Bolívia a Sant Cugat",
+    "url": "https://fmsantcugat.cat/teatre-dansa/rua-balls-trad/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "19:30",
+    "location": "Plaça de Lluís Millet",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      27,
+      1170
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1369,
+    "title": "Barbacoa popular",
+    "url": "https://fmsantcugat.cat/gastronomiques/barbacoa/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "20:00",
+    "location": "Parc de Can Vernet",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      27,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1368,
+    "title": "Veus del Gòspel, en concert",
+    "url": "https://fmsantcugat.cat/musica/veus-del-gospel/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "20:00",
+    "location": "Amfiteatre dels Jardins del Vallès",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1370,
+    "title": "Color Dansa: “Ramita de limón verde”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/color-dansa/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "20:15",
+    "location": "Pistes de bàsquet del Parc Central",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      27,
+      1215
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2049,
+    "title": "38a Trobada gegantera: ball conjunt",
+    "url": "https://fmsantcugat.cat/populars/38a-trobada-gegantera-ball-conjunt/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "20:30",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      1230
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1348,
+    "title": "Orquestra Simfònica Fusió, en concert al Monestir",
+    "url": "https://fmsantcugat.cat/musica/orquestra-fusio/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "21:00",
+    "location": "Església del Monestir",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1260
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1343,
+    "title": "Exhibició dels Sbandieratori Borgo San Lorenzo (Alba, Itàlia)",
+    "url": "https://fmsantcugat.cat/populars/exhibicio-sbandieratori/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "21:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      1260
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1375,
+    "title": "Swing Crashers Sextet, en concert",
+    "url": "https://fmsantcugat.cat/musica/swing-crashers/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "21:30",
+    "location": "Plaça de Can Quitèria",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1290
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1374,
+    "title": "SCD Academy: Festival d’estiu",
+    "url": "https://fmsantcugat.cat/teatre-dansa/scd-academy/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "21:30",
+    "location": "Pistes de bàsquet del Parc Central",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      27,
+      1290
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2063,
+    "title": "Cinema a la fresca: “Frontera”",
+    "url": "https://fmsantcugat.cat/altres/cinema-a-la-fresca-frontera/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "22:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2059,
+    "title": "Música al Xiringuit-U: Ed Tulipa",
+    "url": "https://fmsantcugat.cat/musica/musica-al-xiringuit-u-ed-tulipa/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de l’ U d’Octubre",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1379,
+    "title": "Escenari La Pua: Sol Lagarto",
+    "url": "https://fmsantcugat.cat/musica/sol-lagarto/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1378,
+    "title": "Visita. La nit del Claustre",
+    "url": "https://fmsantcugat.cat/altres/nit-claustre/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "22:00",
+    "location": "(brak lokalizacji)",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      27,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1376,
+    "title": "Sant Cugat Rock Choir, en concert",
+    "url": "https://fmsantcugat.cat/musica/sant-cugat-rock-choir/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "22:00",
+    "location": "Amfiteatre dels Jardins del Vallès",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1382,
+    "title": "Malabarada amb foc ",
+    "url": "https://fmsantcugat.cat/populars/malabarada-foc/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "22:30",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      1350
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1383,
+    "title": "Dj Pilar Felices i exhibició de lindy hop",
+    "url": "https://fmsantcugat.cat/musica/dj-pilar-felices/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "23:00",
+    "location": "Plaça de Can Quitèria",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1380
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1384,
+    "title": "Sybarites, en concert",
+    "url": "https://fmsantcugat.cat/musica/sybarites/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "23:00",
+    "location": "Parc de Ramon Barnils",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1380
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1381,
+    "title": "Nit de ball amb La Betty Orquestra",
+    "url": "https://fmsantcugat.cat/musica/nit-de-ball/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "23:00",
+    "location": "Plaça d’en Coll",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1380
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1385,
+    "title": "Correfoc de Festa Major",
+    "url": "https://fmsantcugat.cat/populars/correfoc-fm/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "23:15",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      27,
+      1395
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1386,
+    "title": "Professor Cunningham & His Old School Quintet",
+    "url": "https://fmsantcugat.cat/musica/prof-cunningham/",
+    "date_pl": "sobota, 27 czerwca",
+    "time_pl": "23:30",
+    "location": "Plaça de Can Quitèria",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      27,
+      1410
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2140,
+    "title": "Escenari La Pua: The Slingshots",
+    "url": "https://fmsantcugat.cat/musica/escenari-la-pua-the-slingshots/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "00:30",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      30
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1432,
+    "title": "Seguici nocturn",
+    "url": "https://fmsantcugat.cat/populars/seguici-nocturn/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "00:30",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      28,
+      30
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1433,
+    "title": "Ball de gralles amb Els Quatrevents",
+    "url": "https://fmsantcugat.cat/populars/ball-gralles/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "01:15",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      28,
+      75
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1394,
+    "title": "Matinada bastonera",
+    "url": "https://fmsantcugat.cat/populars/matinada-bastonera/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "09:00",
+    "location": "La Unió Santcugatenca",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      28,
+      540
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2082,
+    "title": "Lliurament material 45è Concurs d’Arrossos",
+    "url": "https://fmsantcugat.cat/gastronomiques/lliurament-material-45e-concurs-darrossos/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "09:30",
+    "location": "Avinguda de Can Volpelleres",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      28,
+      570
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1396,
+    "title": "Melé de Festa Major",
+    "url": "https://fmsantcugat.cat/esportives/mele-petanca/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "09:30",
+    "location": "Pistes de petanca del Parc de la Pollancreda",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      28,
+      570
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1399,
+    "title": "Esgrima: Festa dels duels",
+    "url": "https://fmsantcugat.cat/esportives/esgrima/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "10:00",
+    "location": "ZEM La Guinardera",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      28,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1398,
+    "title": "Iniciació al beisbol i softbol",
+    "url": "https://fmsantcugat.cat/esportives/beisbol-softbol/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "10:00",
+    "location": "Camp de futbol de Can Magí",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      28,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1397,
+    "title": "Mini Tennis al carrer",
+    "url": "https://fmsantcugat.cat/esportives/mini-tennis/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "10:00",
+    "location": "Pistes de bàsquet del Parc Central",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      28,
+      600
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2093,
+    "title": "Racó Infantil de Festa Major",
+    "url": "https://fmsantcugat.cat/infantils/raco-infantil-de-festa-major/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "11:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      28,
+      660
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2090,
+    "title": "Exhibició dels Sbandieratori Borgo San Lorenzo",
+    "url": "https://fmsantcugat.cat/populars/exhibicio-dels-sbandieratori-borgo-san-lorenzo-alba-italia/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "11:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      28,
+      660
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1403,
+    "title": "XXI Mercat d’andròmines",
+    "url": "https://fmsantcugat.cat/infantils/mercat-andromines/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "11:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      28,
+      660
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1401,
+    "title": "Guia’m pel Monestir",
+    "url": "https://fmsantcugat.cat/altres/guiam-monestir/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "11:00",
+    "location": "Museu de Sant Cugat",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      28,
+      660
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1404,
+    "title": "Visita teatralitzada. “El Sant Cugat del fotògraf Antoni Campañà. Un Sant Cugat desaparegut”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/visita-teatralitzada/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "12:00",
+    "location": "Museu de Sant Cugat",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      28,
+      720
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1395,
+    "title": "45è Concurs d’arrossos",
+    "url": "https://fmsantcugat.cat/gastronomiques/concurs-arrossos/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "13:00",
+    "location": "Avinguda de Can Volpelleres",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      28,
+      780
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1406,
+    "title": "Ball de l’arròs",
+    "url": "https://fmsantcugat.cat/musica/ball-de-larros/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "16:00",
+    "location": "Avinguda de Can Volpelleres",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      960
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1298,
+    "title": "Ball d’avis amb el Duo Montal",
+    "url": "https://fmsantcugat.cat/altres/ball-davis/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "16:30",
+    "location": "Casal de la Gent Gran – Residència Sant Cugat",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      28,
+      990
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2101,
+    "title": "Fira d’atraccions",
+    "url": "https://fmsantcugat.cat/altres/fira-datraccions-5/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "17:00",
+    "location": "Parc de la Pollancreda",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      28,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1413,
+    "title": "XV Trobada de balls i entremesos d’arreu de Catalunya: plantada",
+    "url": "https://fmsantcugat.cat/populars/xv-trobada-entremesos/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "18:00",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      28,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1411,
+    "title": "L’Arrossegada – Sound Qgat",
+    "url": "https://fmsantcugat.cat/musica/larrossegada/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "18:00",
+    "location": "Parc de Can Vernet",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1409,
+    "title": "Racó Infantil: “Batibull de contes al parc”",
+    "url": "https://fmsantcugat.cat/infantils/raco-batibull-contes/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "18:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      28,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1408,
+    "title": "Torneig de Rummikub i jocs de taula a l’Hort de l’Abat",
+    "url": "https://fmsantcugat.cat/infantils/rummikub/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "18:00",
+    "location": "Hort de l’Abat",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      28,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1402,
+    "title": "Racó Infantil",
+    "url": "https://fmsantcugat.cat/infantils/raco-infantil/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "18:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      28,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2114,
+    "title": "XV Trobada de balls i entremesos d’arreu de Catalunya: cercavila",
+    "url": "https://fmsantcugat.cat/populars/xv-trobada-de-balls-i-entremesos-darreu-de-catalunya-cercavila/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "18:30",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      28,
+      1110
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1412,
+    "title": "Escape Room “Operació Contrarrellotge”",
+    "url": "https://fmsantcugat.cat/altres/escape-room/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "18:30",
+    "location": "Plaça de la Vila",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      28,
+      1110
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2117,
+    "title": "Racó Infantil: “Batibull de contes al parc”",
+    "url": "https://fmsantcugat.cat/infantils/raco-infantil-batibull-de-contes-al-parc/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "19:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      28,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1417,
+    "title": "Racó infantil: “K’Mon Tour”",
+    "url": "https://fmsantcugat.cat/infantils/raco-kmon-tour/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "19:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      28,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1415,
+    "title": "Nataraja Dance: Danses de l’Índia i Bollywood",
+    "url": "https://fmsantcugat.cat/teatre-dansa/nataraja-dance/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "19:00",
+    "location": "Pistes de bàsquet del Parc Central",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      28,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2120,
+    "title": "XV Trobada de balls i entremesos d’arreu de Catalunya: lluïment",
+    "url": "https://fmsantcugat.cat/populars/xv-trobada-de-balls-i-entremesos-darreu-de-catalunya-lluiment/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "19:15",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      28,
+      1155
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1419,
+    "title": "Tarab: “Nit de dansa oriental”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/tarab-dansa-orient/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "19:45",
+    "location": "Pistes de bàsquet del Parc Central",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      28,
+      1185
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1421,
+    "title": "Nit d’Havaneres: Els nois de l’eixida",
+    "url": "https://fmsantcugat.cat/musica/havaneres/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "20:00",
+    "location": "Plaça d’en Coll",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1423,
+    "title": "Kamchàtka (espectacle itinerant)",
+    "url": "https://fmsantcugat.cat/teatre-dansa/kamchatka/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "20:00",
+    "location": "Plaça de Sant Pere",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      28,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1422,
+    "title": "Racó infantil: “Back2Classics”",
+    "url": "https://fmsantcugat.cat/infantils/raco-back2classics/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "20:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      28,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1420,
+    "title": "Ballada de sardanes",
+    "url": "https://fmsantcugat.cat/populars/sardanes/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "20:00",
+    "location": "Plaça de l’Om",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      28,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1424,
+    "title": "Orquestra Diletant de Catalunya, en concert",
+    "url": "https://fmsantcugat.cat/musica/orquestra-diletant/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "20:30",
+    "location": "Amfiteatre dels Jardins del Vallès",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      1230
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1425,
+    "title": "Global Movement: “GLOBALitza’t”",
+    "url": "https://fmsantcugat.cat/teatre-dansa/global-movement/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "21:00",
+    "location": "Pistes de bàsquet del Parc Central",
+    "category_slugs": [
+      "teatre-dansa"
+    ],
+    "categories_pl": [
+      "Teatr/Taniec"
+    ],
+    "sort_key": [
+      28,
+      1260
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2131,
+    "title": "Nit d’Havaneres: Haváname",
+    "url": "https://fmsantcugat.cat/musica/nit-dhavaneres-havaname/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "21:30",
+    "location": "Plaça d’en Coll",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      1290
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 2133,
+    "title": "Música al Xiringuit-U: Els homes del cap dret",
+    "url": "https://fmsantcugat.cat/musica/musica-al-xiringuit-u-els-homes-del-cap-dret/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de l’U d’Octubre",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1380,
+    "title": "Cinema a la fresca: “Guardiana de dracs”",
+    "url": "https://fmsantcugat.cat/altres/cinema-a-la-fresca/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "22:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      28,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1430,
+    "title": "Fetus, en concert",
+    "url": "https://fmsantcugat.cat/musica/fetus/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "22:30",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      1350
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1429,
+    "title": "Escenari La Pua: Out Of The Blues",
+    "url": "https://fmsantcugat.cat/musica/escenari-la-pua/",
+    "date_pl": "niedziela, 28 czerwca",
+    "time_pl": "22:30",
+    "location": "Plaça de Barcelona",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      28,
+      1350
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1434,
+    "title": "Albades de Sant Pere",
+    "url": "https://fmsantcugat.cat/populars/albades-sant-pere/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "08:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      29,
+      480
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1436,
+    "title": "Torneig mixt de Pickleball",
+    "url": "https://fmsantcugat.cat/esportives/pickleball/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "09:00",
+    "location": "ZEM Rambla del Celler- Pav. 3",
+    "category_slugs": [
+      "esportives"
+    ],
+    "categories_pl": [
+      "Sport"
+    ],
+    "sort_key": [
+      29,
+      540
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1435,
+    "title": "Esmorzar popular",
+    "url": "https://fmsantcugat.cat/gastronomiques/esmorzar-popular/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "09:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      29,
+      540
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1438,
+    "title": "Festa de l’aigua",
+    "url": "https://fmsantcugat.cat/infantils/festa-de-laigua/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "10:30",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      29,
+      630
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1437,
+    "title": "Seguici del Ram",
+    "url": "https://fmsantcugat.cat/populars/seguici-del-ram/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "10:30",
+    "location": "Plaça Doctor Galtés",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      29,
+      630
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1439,
+    "title": "Vermut MusiCat",
+    "url": "https://fmsantcugat.cat/gastronomiques/vermut-musicat/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "13:00",
+    "location": "Plaça d’Octavià",
+    "category_slugs": [
+      "gastronomiques"
+    ],
+    "categories_pl": [
+      "Gastronomia"
+    ],
+    "sort_key": [
+      29,
+      780
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1293,
+    "title": "Fira d’atraccions",
+    "url": "https://fmsantcugat.cat/altres/fira-datraccions-2/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "17:00",
+    "location": "Parc de la Pollancreda",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      29,
+      1020
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1440,
+    "title": "Seguici de Sant Pere",
+    "url": "https://fmsantcugat.cat/populars/seguici-sant-pere/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "17:30",
+    "location": "Plaça de la Vila",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      29,
+      1050
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1441,
+    "title": "Homenatge davant de la casa de F. Vila i Trabal",
+    "url": "https://fmsantcugat.cat/populars/homenatge/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "18:00",
+    "location": "Plaça de Sant Pere",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      29,
+      1080
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1442,
+    "title": "Holi Colours Festival",
+    "url": "https://fmsantcugat.cat/altres/holi-colours/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "18:30",
+    "location": "Parc de Ramon Barnils",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      29,
+      1110
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1444,
+    "title": "L’Estovallada, amb Bon Vent!",
+    "url": "https://fmsantcugat.cat/infantils/estovallada/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "19:00",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      29,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1443,
+    "title": "Missa Major de Sant Pere al Monestir",
+    "url": "https://fmsantcugat.cat/altres/missa-major/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "19:00",
+    "location": "Església del Monestir",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      29,
+      1140
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1445,
+    "title": "Ball de l’ofrena i benedicció dels rams",
+    "url": "https://fmsantcugat.cat/populars/ball-de-lofrena/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "19:30",
+    "location": "Església del Monestir",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      29,
+      1170
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1446,
+    "title": "Esclat de Festa Major",
+    "url": "https://fmsantcugat.cat/populars/esclat-fm/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "20:00",
+    "location": "Llotgeta Monestir",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      29,
+      1200
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1447,
+    "title": "Paga-li, Joan",
+    "url": "https://fmsantcugat.cat/populars/paga-li-joan/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "20:15",
+    "location": "Jardins del Paga-li Joan",
+    "category_slugs": [
+      "populars"
+    ],
+    "categories_pl": [
+      "Tradycje ludowe"
+    ],
+    "sort_key": [
+      29,
+      1215
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1448,
+    "title": "L’Estovallada, amb Afònic karaoke Kids",
+    "url": "https://fmsantcugat.cat/infantils/afonic-kids/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "20:30",
+    "location": "Parc Central",
+    "category_slugs": [
+      "infantils"
+    ],
+    "categories_pl": [
+      "Dla dzieci"
+    ],
+    "sort_key": [
+      29,
+      1230
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1449,
+    "title": "La Lira",
+    "url": "https://fmsantcugat.cat/musica/la-lira/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "22:00",
+    "location": "Plaça de l’Om",
+    "category_slugs": [
+      "musica"
+    ],
+    "categories_pl": [
+      "Muzyka"
+    ],
+    "sort_key": [
+      29,
+      1320
+    ],
+    "description_pl": null
+  },
+  {
+    "id": 1450,
+    "title": "Castell de focs",
+    "url": "https://fmsantcugat.cat/altres/castell-de-focs/",
+    "date_pl": "poniedziałek, 29 czerwca",
+    "time_pl": "23:15",
+    "location": "Turó de Can Mates",
+    "category_slugs": [
+      "altres"
+    ],
+    "categories_pl": [
+      "Inne"
+    ],
+    "sort_key": [
+      29,
+      1395
+    ],
+    "description_pl": null
+  }
+]
