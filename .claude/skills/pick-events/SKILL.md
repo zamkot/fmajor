@@ -12,5 +12,7 @@ Suggest -> confirm -> link. If you are very confident in your suggestions you ca
    not raw JSON.
 2. **Confirm**: ask which of the suggestions to keep. Resolve any user-named additions
    back to ids yourself.
-3. **Link**: run `scripts/make_share_link.sh <id> [id ...]` with the confirmed ids. It
-   prints the finished share URL.
+3. **Link**: run `scripts/make_share_link.sh [--label <text>] <id> [id ...]` with the
+   confirmed ids. Pass `--label` with a short (1-3 word) summary of the request — not
+   the user's name — e.g. "Balls" for an open-air ball pick, "Food" for food stalls. The
+   script prints the finished share URL; the label shows up on the page as "👀 Picks: <label>".

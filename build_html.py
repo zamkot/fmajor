@@ -903,6 +903,7 @@ filterBtns.forEach(btn => {{
   btn.addEventListener('click', () => toggleFilter(btn.dataset.cat));
 }});
 searchInput.addEventListener('input', applyFilter);
+if (shareData) {{ activeCats.add('__ownertouched__'); }}
 applyFilter();
 
 document.getElementById('generate-link-btn').addEventListener('click', () => {{

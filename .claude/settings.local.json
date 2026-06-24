@@ -27,7 +27,8 @@
       "mcp__playwright__browser_handle_dialog",
       "mcp__playwright__browser_resize",
       "Bash(git ls-tree *)",
-      "Bash(./.claude/skills/pick-events/scripts/make_share_link.sh 1280 *)"
+      "Bash(./.claude/skills/pick-events/scripts/make_share_link.sh 1280 *)",
+      "Bash(bash .claude/skills/pick-events/scripts/make_share_link.sh)"
     ]
   },
   "enabledMcpjsonServers": [
