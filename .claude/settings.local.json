@@ -16,5 +16,8 @@
       "Bash(echo \"ignored?:$?\")",
       "Bash(grep -vE)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
 }

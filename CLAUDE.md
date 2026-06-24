@@ -85,6 +85,35 @@ scrape_events.py  --(network, slow, ~190 page fetches)-->  events_raw.json
 - Only fast-forward merges onto `main` — no merge commits. When integrating a worktree
   branch, rebase/cherry-pick it onto `main`'s tip first if needed, then fast-forward.
 
+## Validating changes to schedule.html
+
+This repo has a project-scoped Playwright MCP server (`.mcp.json`, `npx @playwright/mcp`)
+for driving a real (isolated, non-system) Chromium browser — it does not touch your
+installed Chrome, its profile, or settings. It runs headed by default so you can watch it.
+
+The MCP browser blocks the `file:` protocol, so `schedule.html` can't be opened directly
+by path — serve it over HTTP first, started as a tracked background task (not a bare `&`)
+so it can be stopped cleanly afterwards instead of left running:
+
+```bash
+python3 -m http.server 8743   # from the repo root, run with run_in_background
+```
+
+then navigate the MCP browser to `http://localhost:8743/schedule.html`. When validation is
+done, stop that same background task by its task id rather than killing anything by port
+number — killing by port risks taking down an unrelated process if 8743 is reused elsewhere.
+
+After editing `schedule.html`, use the Playwright MCP browser tools to actually exercise
+the behavior rather than just eyeballing the diff:
+
+- star/unstar an event and reload, to confirm `localStorage` (`fmajor-starred-v1`) persists
+- click "Eksportuj ID ★" and check the exported JSON
+- open an untranslated event and confirm it falls back to the Catalan original (`lang="ca"`)
+  with the "Przetłumacz na polski" suggestion
+
+This is ad-hoc/manual validation, not a maintained test suite — there's no fixed script to
+keep in sync, just drive the browser tools each time to check the flows the edit touched.
+
 ## Tool conventions
 
 - For one-shot JSON inspection/filtering, prefer `jq`.
