@@ -22,7 +22,9 @@
       "mcp__playwright__browser_evaluate",
       "Read(//dev/**)",
       "Bash(python3 -m http.server 8743)",
-      "mcp__playwright__browser_close"
+      "mcp__playwright__browser_close",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_handle_dialog"
     ]
   },
   "enabledMcpjsonServers": [
