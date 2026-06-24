@@ -91,8 +91,8 @@ already — see git history around the "fix up all translations" commit).
 `schedule.html` is a static page with no backend. Two things to know before touching it:
 
 - **Starring is client-side only.** Stars are stored in the browser's `localStorage`
-  (key `fmajor-starred-v1`), seeded on first load from `DEFAULT_STARRED` in
-  `build_html.py`. There is no server round-trip — if the user stars new events in the
+  (key `fmajor-starred-v1`), empty on first load — there is no preselected/default set.
+  There is no server round-trip — if the user stars new events in the
   browser, those ids only exist in that browser's `localStorage` until the user copies
   them out via the page's "Eksportuj ID ★" button (copies starred ids as JSON to the
   clipboard) and pastes them back into a chat for translation.
