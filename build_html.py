@@ -115,6 +115,9 @@ def event_row(e):
       <td class="star-cell"><button class="star-btn" data-id="{e['id']}" aria-label="Oznacz gwiazdką" title="Oznacz gwiazdką" data-i18n-aria="starLabel" data-i18n-title="starLabel">☆</button></td>
       <td class="want-cell"><button class="want-btn" data-id="{e['id']}" aria-label="Chcę pójść" title="Chcę pójść" data-i18n-aria="wantLabel" data-i18n-title="wantLabel">♡</button></td>
       <td class="hide-cell"><button class="hide-btn" data-id="{e['id']}" aria-label="Skryj" title="Skryj to wydarzenie" data-i18n-aria="hideAria" data-i18n-title="hideTitle">⊘</button></td>
+      <td class="owner-cell owner-star-cell" data-id="{e['id']}"></td>
+      <td class="owner-cell owner-want-cell" data-id="{e['id']}"></td>
+      <td class="owner-cell owner-hide-cell" data-id="{e['id']}"></td>
       <td class="time">{escape(e['time_pl'])}</td>
       <td class="title">
         <a href="{escape(e['url'])}" target="_blank" rel="noopener">{escape(e['title'])}</a>
@@ -122,7 +125,7 @@ def event_row(e):
       </td>
       <td class="loc">{escape(e['location'])}</td>
     </tr>
-    <tr class="detail-row"><td colspan="6"><div class="detail">{detail_html}</div></td></tr>
+    <tr class="detail-row"><td colspan="9"><div class="detail">{detail_html}</div></td></tr>
     """
 
 
@@ -177,10 +180,16 @@ TRANSLATIONS = {
     "expandAllTitle": {"pl": "Rozwiń opisy wszystkich wydarzeń", "en": "Expand all event descriptions"},
     "collapseAll": {"pl": "Zwiń wszystko", "en": "Collapse all"},
     "collapseAllTitle": {"pl": "Zwiń opisy wszystkich wydarzeń", "en": "Collapse all event descriptions"},
-    "exportStarred": {"pl": "Eksportuj ID ★", "en": "Export IDs ★"},
-    "exportStarredTitle": {"pl": "Skopiuj ID oznaczonych gwiazdką wydarzeń do schowka", "en": "Copy starred event IDs to clipboard"},
-    "exportWantgo": {"pl": "Eksportuj ID ♥", "en": "Export IDs ♥"},
-    "exportWantgoTitle": {"pl": "Skopiuj ID wydarzeń „chcę pójść” do schowka", "en": "Copy \"want to go\" event IDs to clipboard"},
+    "generateLink": {"pl": "Generuj link", "en": "Generate link"},
+    "generateLinkTitle": {"pl": "Wygeneruj link z Twoimi wyborami do wysłania", "en": "Generate a shareable link with your picks"},
+    "namePrompt": {"pl": "Twoje imię:", "en": "Your name:"},
+    "anonymousName": {"pl": "Anonim", "en": "Friend"},
+    "syncDevice": {"pl": "Synchronizuj z tym urządzeniem", "en": "Sync to this device"},
+    "syncDeviceTitle": {"pl": "Dodaj wybory z linku do Twoich lokalnych wyborów na tym urządzeniu", "en": "Merge this link's picks into your own picks on this device"},
+    "shareHeaderPrefix": {"pl": "Lista: ", "en": "List: "},
+    "shareNote": {"pl": " — fioletowe kolumny pokazują wybory: ", "en": " — purple columns show "},
+    "shareNoteSuffix": {"pl": "", "en": "'s picks"},
+    "ownerFilterPrefix": {"pl": "👀 Wybory: ", "en": "👀 Picks: "},
     "starLabel": {"pl": "Oznacz gwiazdką", "en": "Star this event"},
     "wantLabel": {"pl": "Chcę pójść", "en": "Want to go"},
     "hideAria": {"pl": "Skryj", "en": "Hide"},
@@ -202,6 +211,7 @@ html = f"""<!DOCTYPE html>
     --ink-light: #555;
     --rule: #ddd;
     --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --owner-color: #a335d9;
   }}
   * {{ box-sizing: border-box; }}
   body {{
@@ -230,6 +240,12 @@ html = f"""<!DOCTYPE html>
     font-style: italic;
     font-size: 1rem;
     margin: 0;
+  }}
+  .share-header {{
+    color: var(--owner-color);
+    font-style: italic;
+    font-size: 0.92rem;
+    margin: 0.4rem 0 0;
   }}
   .filters {{
     margin-top: 1.2rem;
@@ -325,6 +341,14 @@ html = f"""<!DOCTYPE html>
     text-align: center;
     cursor: pointer;
   }}
+  td.owner-cell {{
+    width: 1.6rem;
+    text-align: center;
+    color: var(--owner-color);
+    font-size: 1.05rem;
+    display: none;
+  }}
+  body.share-mode td.owner-cell {{ display: table-cell; }}
   .star-btn {{
     background: none;
     border: none;
@@ -448,6 +472,7 @@ html = f"""<!DOCTYPE html>
 <header>
   <h1>Festa Major de Sant Cugat</h1>
   <p class="subtitle" data-i18n="subtitle">25–29 czerwca 2026 · program wydarzeń</p>
+  <p class="share-header" id="share-header" style="display:none"></p>
   <div class="lang-toggle" role="group" aria-label="Language / Język">
     <button class="lang-btn" data-lang="pl">PL</button>
     <button class="lang-btn" data-lang="en">EN</button>
@@ -459,8 +484,7 @@ html = f"""<!DOCTYPE html>
     {filter_buttons}
     <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń" data-i18n="expandAll" data-i18n-title="expandAllTitle">Rozwiń wszystko</button>
     <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń" data-i18n="collapseAll" data-i18n-title="collapseAllTitle">Zwiń wszystko</button>
-    <button class="export-btn" id="export-btn" title="Skopiuj ID oznaczonych gwiazdką wydarzeń do schowka" data-i18n="exportStarred" data-i18n-title="exportStarredTitle">Eksportuj ID ★</button>
-    <button class="export-btn" id="export-want-btn" title="Skopiuj ID wydarzeń „chcę pójść” do schowka" data-i18n="exportWantgo" data-i18n-title="exportWantgoTitle">Eksportuj ID ♥</button>
+    <button class="export-btn" id="generate-link-btn" title="Wygeneruj link z Twoimi wyborami do wysłania" data-i18n="generateLink" data-i18n-title="generateLinkTitle">Generuj link</button>
   </div>
 </header>
 
@@ -478,6 +502,67 @@ const LANG_STORAGE_KEY = 'fmajor-lang-v1';
 const DEFAULT_STARRED = {json.dumps(DEFAULT_STARRED)};
 const TRANSLATIONS = {json.dumps(TRANSLATIONS, ensure_ascii=False)};
 const CATEGORY_TRANSLATIONS = {json.dumps(CATEGORY_TRANSLATIONS, ensure_ascii=False)};
+
+const BASE62_CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+function bigIntToBase62(n) {{
+  if (n === 0n) return '0';
+  let s = '';
+  while (n > 0n) {{
+    s = BASE62_CHARS[Number(n % 62n)] + s;
+    n = n / 62n;
+  }}
+  return s;
+}}
+function base62ToBigInt(s) {{
+  let n = 0n;
+  for (const ch of s) {{
+    n = n * 62n + BigInt(BASE62_CHARS.indexOf(ch));
+  }}
+  return n;
+}}
+function idsToBits(ids) {{
+  let bits = ids.length.toString(2).padStart(8, '0');
+  for (const id of ids) {{ bits += id.toString(2).padStart(12, '0'); }}
+  return bits;
+}}
+function encodeSharePayload(starredIds, wantIds, hiddenIds) {{
+  const bits = '1' + idsToBits(starredIds) + idsToBits(wantIds) + idsToBits(hiddenIds);
+  return bigIntToBase62(BigInt('0b' + bits));
+}}
+function decodeSharePayload(str) {{
+  let bits = base62ToBigInt(str).toString(2).slice(1);
+  let pos = 0;
+  function readIds() {{
+    const count = parseInt(bits.slice(pos, pos + 8), 2); pos += 8;
+    const ids = [];
+    for (let i = 0; i < count; i++) {{
+      ids.push(parseInt(bits.slice(pos, pos + 12), 2));
+      pos += 12;
+    }}
+    return ids;
+  }}
+  const starredIds = readIds();
+  const wantIds = readIds();
+  const hiddenIds = readIds();
+  return {{ starredIds, wantIds, hiddenIds }};
+}}
+function getShareDataFromUrl() {{
+  const params = new URLSearchParams(location.search);
+  const payload = params.get('share');
+  if (!payload) return null;
+  try {{
+    const decoded = decodeSharePayload(payload);
+    return {{
+      name: params.get('by') || null,
+      starred: new Set(decoded.starredIds),
+      want: new Set(decoded.wantIds),
+      hidden: new Set(decoded.hiddenIds),
+    }};
+  }} catch (e) {{
+    return null;
+  }}
+}}
 
 function loadSet(key, defaults) {{
   const raw = localStorage.getItem(key);
@@ -529,6 +614,25 @@ function setLanguage(lang) {{
     btn.classList.toggle('active', btn.dataset.lang === lang);
   }});
   localStorage.setItem(LANG_STORAGE_KEY, lang);
+  refreshShareUI();
+}}
+
+function refreshShareUI() {{
+  if (!shareData) return;
+  const header = document.getElementById('share-header');
+  if (header) {{
+    header.textContent = TRANSLATIONS.shareHeaderPrefix[currentLang] + shareData.name
+      + TRANSLATIONS.shareNote[currentLang] + shareData.name + TRANSLATIONS.shareNoteSuffix[currentLang];
+  }}
+  const ownerFilterBtn = document.getElementById('owner-filter-btn');
+  if (ownerFilterBtn) {{
+    ownerFilterBtn.textContent = TRANSLATIONS.ownerFilterPrefix[currentLang] + shareData.name;
+  }}
+}}
+
+let shareData = getShareDataFromUrl();
+if (shareData && !shareData.name) {{
+  shareData.name = navigator.language.startsWith('en') ? 'Friend' : 'Anonim';
 }}
 
 document.querySelectorAll('.lang-btn').forEach(btn => {{
@@ -552,9 +656,52 @@ function applyStarredState() {{
     const isHidden = hidden.has(id);
     row.classList.toggle('is-hidden', isHidden);
     row.querySelector('.hide-btn').textContent = isHidden ? '🚫' : '⊘';
+    if (shareData) {{
+      row.querySelector('.owner-star-cell').textContent = shareData.starred.has(id) ? '★' : '';
+      row.querySelector('.owner-want-cell').textContent = shareData.want.has(id) ? '♥' : '';
+      row.querySelector('.owner-hide-cell').textContent = shareData.hidden.has(id) ? '⊘' : '';
+    }}
   }});
 }}
 applyStarredState();
+
+function initShareMode() {{
+  if (!shareData) return;
+  document.body.classList.add('share-mode');
+  document.getElementById('share-header').style.display = '';
+
+  const ownerFilterBtn = document.createElement('button');
+  ownerFilterBtn.className = 'filter-btn special';
+  ownerFilterBtn.id = 'owner-filter-btn';
+  ownerFilterBtn.dataset.cat = '__ownertouched__';
+  ownerFilterBtn.style.setProperty('--c', '#a335d9');
+  document.getElementById('filters').appendChild(ownerFilterBtn);
+
+  const syncBtn = document.createElement('button');
+  syncBtn.className = 'export-btn';
+  syncBtn.id = 'sync-btn';
+  syncBtn.dataset.i18n = 'syncDevice';
+  syncBtn.dataset.i18nTitle = 'syncDeviceTitle';
+  syncBtn.textContent = TRANSLATIONS.syncDevice[currentLang];
+  syncBtn.title = TRANSLATIONS.syncDeviceTitle[currentLang];
+  syncBtn.addEventListener('click', () => {{
+    shareData.starred.forEach(id => starred.add(id));
+    shareData.want.forEach(id => wantToGo.add(id));
+    shareData.hidden.forEach(id => hidden.add(id));
+    saveSet(STORAGE_KEY, starred);
+    saveSet(WANT_STORAGE_KEY, wantToGo);
+    saveSet(HIDDEN_STORAGE_KEY, hidden);
+    applyStarredState();
+    applyFilter();
+    const original = syncBtn.textContent;
+    syncBtn.textContent = TRANSLATIONS.copied[currentLang];
+    setTimeout(() => {{ syncBtn.textContent = TRANSLATIONS.syncDevice[currentLang]; }}, 1500);
+  }});
+  document.getElementById('filters').appendChild(syncBtn);
+
+  refreshShareUI();
+}}
+initShareMode();
 
 document.querySelectorAll('.star-btn').forEach(btn => {{
   btn.addEventListener('click', e => {{
@@ -614,6 +761,11 @@ const activeCats = new Set();
 function rowMatchesCat(row, cat) {{
   if (cat === '__starred__') return row.classList.contains('starred');
   if (cat === '__wantgo__') return row.classList.contains('want-to-go');
+  if (cat === '__ownertouched__') {{
+    if (!shareData) return false;
+    const id = Number(row.dataset.id);
+    return shareData.starred.has(id) || shareData.want.has(id) || shareData.hidden.has(id);
+  }}
   return row.dataset.cats.split(' ').includes(cat);
 }}
 
@@ -678,20 +830,16 @@ filterBtns.forEach(btn => {{
 searchInput.addEventListener('input', applyFilter);
 applyFilter();
 
-document.getElementById('export-btn').addEventListener('click', () => {{
-  const ids = JSON.stringify([...starred]);
-  navigator.clipboard.writeText(ids).then(() => {{
-    const btn = document.getElementById('export-btn');
-    const original = btn.textContent;
-    btn.textContent = TRANSLATIONS.copied[currentLang];
-    setTimeout(() => {{ btn.textContent = original; }}, 1500);
-  }});
-}});
-
-document.getElementById('export-want-btn').addEventListener('click', () => {{
-  const ids = JSON.stringify([...wantToGo]);
-  navigator.clipboard.writeText(ids).then(() => {{
-    const btn = document.getElementById('export-want-btn');
+document.getElementById('generate-link-btn').addEventListener('click', () => {{
+  let name = window.prompt(TRANSLATIONS.namePrompt[currentLang], '');
+  if (name === null) return;
+  name = name.trim() || TRANSLATIONS.anonymousName[currentLang];
+  const payload = encodeSharePayload([...starred], [...wantToGo], [...hidden]);
+  const url = new URL(location.origin + location.pathname);
+  url.searchParams.set('share', payload);
+  url.searchParams.set('by', name);
+  navigator.clipboard.writeText(url.toString()).then(() => {{
+    const btn = document.getElementById('generate-link-btn');
     const original = btn.textContent;
     btn.textContent = TRANSLATIONS.copied[currentLang];
     setTimeout(() => {{ btn.textContent = original; }}, 1500);
