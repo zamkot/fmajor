@@ -13,7 +13,7 @@ PAGES_URL="https://zamkot.github.io/fmajor/"
 ROOT="$(cd "$(dirname "$0")/../../../.." && pwd)"
 IDS="$(IFS=,; echo "$*")"
 
-TMP="$(mktemp -t fmajor_encode).js"
+TMP="$(mktemp -t fmajor_encode.XXXXXX).js"
 trap 'rm -f "$TMP"' EXIT
 
 # Extract the share-payload encoder straight from build_html.py instead of
