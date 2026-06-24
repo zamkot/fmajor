@@ -38,13 +38,26 @@ PARENT_EXTRA = {
 PARENT_IDS = PARENT_PICKS | {e["id"] for e in events if e["title"].strip() in PARENT_EXTRA}
 
 
+DESC_NOTE_PL = (
+    '<p class="desc-note">Brak tłumaczenia — oryginał po katalońsku '
+    "(kliknij prawym przyciskiem myszy i wybierz „Przetłumacz na polski”, "
+    'jeśli używasz Chrome):</p>'
+)
+DESC_NOTE_EN = (
+    '<p class="desc-note">No translation yet — Catalan original below '
+    "(right-click and use your browser's translate option):</p>"
+)
+DESC_EMPTY_PL = 'Brak opisu dla tego wydarzenia.'
+DESC_EMPTY_EN = 'No description for this event.'
+
+
 def render_description(e):
     desc_pl = e.get("description_pl")
     desc_ca = e.get("description_ca")
 
     original_col = (
         f'<div class="desc-original">'
-        f'<p class="desc-original-label">Oryginał (katalońsku)</p>{desc_ca}</div>'
+        f'<p class="desc-original-label" data-i18n="descOriginalLabel">Oryginał (katalońsku)</p>{desc_ca}</div>'
         if desc_ca
         else ""
     )
@@ -57,14 +70,10 @@ def render_description(e):
         return left_col
 
     if desc_ca:
-        note = (
-            '<p class="desc-note">Brak tłumaczenia — oryginał po katalońsku '
-            "(kliknij prawym przyciskiem myszy i wybierz „Przetłumacz na polski”, "
-            'jeśli używasz Chrome):</p>'
-        )
-        return f'<div class="desc-cols"><div class="desc-pl">{note}</div>{original_col}</div>'
+        note = f'<div class="desc-pl" data-i18n-html="descNoTranslation">{DESC_NOTE_PL}</div>'
+        return f'<div class="desc-cols">{note}{original_col}</div>'
 
-    return '<p class="desc-note placeholder">Brak opisu dla tego wydarzenia.</p>'
+    return f'<p class="desc-note placeholder" data-i18n="descEmpty">{DESC_EMPTY_PL}</p>'
 
 
 def event_row(e):
@@ -83,9 +92,9 @@ def event_row(e):
     search_attr = escape(f"{e['title']} {e['location']}")
     return f"""
     <tr class="event" data-id="{e['id']}" data-cats="{cat_attr}" data-search="{search_attr}" tabindex="0">
-      <td class="star-cell"><button class="star-btn" data-id="{e['id']}" aria-label="Oznacz gwiazdką" title="Oznacz gwiazdką">☆</button></td>
-      <td class="want-cell"><button class="want-btn" data-id="{e['id']}" aria-label="Chcę pójść" title="Chcę pójść">♡</button></td>
-      <td class="hide-cell"><button class="hide-btn" data-id="{e['id']}" aria-label="Skryj" title="Skryj to wydarzenie">⊘</button></td>
+      <td class="star-cell"><button class="star-btn" data-id="{e['id']}" aria-label="Oznacz gwiazdką" title="Oznacz gwiazdką" data-i18n-aria="starLabel" data-i18n-title="starLabel">☆</button></td>
+      <td class="want-cell"><button class="want-btn" data-id="{e['id']}" aria-label="Chcę pójść" title="Chcę pójść" data-i18n-aria="wantLabel" data-i18n-title="wantLabel">♡</button></td>
+      <td class="hide-cell"><button class="hide-btn" data-id="{e['id']}" aria-label="Skryj" title="Skryj to wydarzenie" data-i18n-aria="hideAria" data-i18n-title="hideTitle">⊘</button></td>
       <td class="time">{escape(e['time_pl'])}</td>
       <td class="title">
         <a href="{escape(e['url'])}" target="_blank" rel="noopener">{escape(e['title'])}</a>
@@ -119,11 +128,47 @@ filter_buttons = "".join(
     for c in all_categories
 )
 special_filter_buttons = (
-    '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b">★ Twoje wybrane</button>'
-    '<button class="filter-btn special" data-cat="__wantgo__" style="--c:#2a6ea3">♥ Chcę pójść</button>'
-    '<button class="filter-btn special" data-cat="__parents__" style="--c:#2a7a6b">👪 Dla rodziców</button>'
-    '<button class="filter-btn special" data-cat="__hidden__" style="--c:#a33">⊘ Skryte</button>'
+    '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b" data-i18n="filterStarred">★ Twoje wybrane</button>'
+    '<button class="filter-btn special" data-cat="__wantgo__" style="--c:#2a6ea3" data-i18n="filterWantgo">♥ Chcę pójść</button>'
+    '<button class="filter-btn special" data-cat="__parents__" style="--c:#2a7a6b" data-i18n="filterParents">👪 Dla rodziców</button>'
+    '<button class="filter-btn special" data-cat="__hidden__" style="--c:#a33" data-i18n="filterHidden">⊘ Skryte</button>'
 )
+
+footer_html_pl = (
+    f'{len(events)} wydarzeń · źródło: <a href="https://fmsantcugat.cat/">fmsantcugat.cat</a> · '
+    'kliknij wydarzenie, aby rozwinąć opis · kliknij ☆, aby oznaczyć gwiazdką (zapisywane lokalnie w przeglądarce)'
+)
+footer_html_en = (
+    f'{len(events)} events · source: <a href="https://fmsantcugat.cat/">fmsantcugat.cat</a> · '
+    'click an event to expand its description · click ☆ to star it (saved locally in your browser)'
+)
+
+TRANSLATIONS = {
+    "subtitle": {"pl": "25–29 czerwca 2026 · program wydarzeń", "en": "25–29 June 2026 · event schedule"},
+    "searchPlaceholder": {"pl": "Szukaj…", "en": "Search…"},
+    "filterAll": {"pl": "Wszystkie", "en": "All"},
+    "filterStarred": {"pl": "★ Twoje wybrane", "en": "★ Your picks"},
+    "filterWantgo": {"pl": "♥ Chcę pójść", "en": "♥ Want to go"},
+    "filterParents": {"pl": "👪 Dla rodziców", "en": "👪 For parents"},
+    "filterHidden": {"pl": "⊘ Skryte", "en": "⊘ Hidden"},
+    "expandAll": {"pl": "Rozwiń wszystko", "en": "Expand all"},
+    "expandAllTitle": {"pl": "Rozwiń opisy wszystkich wydarzeń", "en": "Expand all event descriptions"},
+    "collapseAll": {"pl": "Zwiń wszystko", "en": "Collapse all"},
+    "collapseAllTitle": {"pl": "Zwiń opisy wszystkich wydarzeń", "en": "Collapse all event descriptions"},
+    "exportStarred": {"pl": "Eksportuj ID ★", "en": "Export IDs ★"},
+    "exportStarredTitle": {"pl": "Skopiuj ID oznaczonych gwiazdką wydarzeń do schowka", "en": "Copy starred event IDs to clipboard"},
+    "exportWantgo": {"pl": "Eksportuj ID ♥", "en": "Export IDs ♥"},
+    "exportWantgoTitle": {"pl": "Skopiuj ID wydarzeń „chcę pójść” do schowka", "en": "Copy \"want to go\" event IDs to clipboard"},
+    "starLabel": {"pl": "Oznacz gwiazdką", "en": "Star this event"},
+    "wantLabel": {"pl": "Chcę pójść", "en": "Want to go"},
+    "hideAria": {"pl": "Skryj", "en": "Hide"},
+    "hideTitle": {"pl": "Skryj to wydarzenie", "en": "Hide this event"},
+    "descOriginalLabel": {"pl": "Oryginał (katalońsku)", "en": "Original (Catalan)"},
+    "descNoTranslation": {"pl": DESC_NOTE_PL, "en": DESC_NOTE_EN},
+    "descEmpty": {"pl": DESC_EMPTY_PL, "en": DESC_EMPTY_EN},
+    "footer": {"pl": footer_html_pl, "en": footer_html_en},
+    "copied": {"pl": "Skopiowano!", "en": "Copied!"},
+}
 
 html = f"""<!DOCTYPE html>
 <html lang="pl">
@@ -189,6 +234,24 @@ html = f"""<!DOCTYPE html>
   .filter-btn.active {{ opacity: 1; background: color-mix(in srgb, var(--c) 12%, transparent); }}
   .filter-btn:hover {{ opacity: 0.85; }}
   .filter-btn.special {{ font-weight: bold; }}
+  .lang-toggle {{
+    margin-top: 0.8rem;
+    display: flex;
+    gap: 0.3rem;
+  }}
+  .lang-btn {{
+    font-family: var(--serif);
+    font-size: 0.72rem;
+    border: 1px solid var(--ink-light);
+    color: var(--ink-light);
+    background: transparent;
+    border-radius: 2px;
+    padding: 0.15rem 0.5rem;
+    cursor: pointer;
+    opacity: 0.55;
+  }}
+  .lang-btn.active {{ opacity: 1; background: #eee; color: var(--ink); }}
+  .lang-btn:hover {{ opacity: 0.85; }}
   .search-input {{
     font-family: var(--serif);
     font-size: 0.85rem;
@@ -362,31 +425,36 @@ html = f"""<!DOCTYPE html>
 <body>
 <header>
   <h1>Festa Major de Sant Cugat</h1>
-  <p class="subtitle">25–29 czerwca 2026 · program wydarzeń</p>
+  <p class="subtitle" data-i18n="subtitle">25–29 czerwca 2026 · program wydarzeń</p>
+  <div class="lang-toggle" role="group" aria-label="Language / Język">
+    <button class="lang-btn" data-lang="pl">PL</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
   <div class="filters" id="filters">
-    <input type="search" id="search-input" class="search-input" placeholder="Szukaj…" aria-label="Szukaj wydarzeń">
-    <button class="filter-btn active" data-cat="all" style="--c:#1a1a1a">Wszystkie</button>
+    <input type="search" id="search-input" class="search-input" placeholder="Szukaj…" aria-label="Szukaj wydarzeń" data-i18n-placeholder="searchPlaceholder" data-i18n-aria="searchPlaceholder">
+    <button class="filter-btn active" data-cat="all" style="--c:#1a1a1a" data-i18n="filterAll">Wszystkie</button>
     {special_filter_buttons}
     {filter_buttons}
-    <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń">Rozwiń wszystko</button>
-    <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń">Zwiń wszystko</button>
-    <button class="export-btn" id="export-btn" title="Skopiuj ID oznaczonych gwiazdką wydarzeń do schowka">Eksportuj ID ★</button>
-    <button class="export-btn" id="export-want-btn" title="Skopiuj ID wydarzeń „chcę pójść” do schowka">Eksportuj ID ♥</button>
+    <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń" data-i18n="expandAll" data-i18n-title="expandAllTitle">Rozwiń wszystko</button>
+    <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń" data-i18n="collapseAll" data-i18n-title="collapseAllTitle">Zwiń wszystko</button>
+    <button class="export-btn" id="export-btn" title="Skopiuj ID oznaczonych gwiazdką wydarzeń do schowka" data-i18n="exportStarred" data-i18n-title="exportStarredTitle">Eksportuj ID ★</button>
+    <button class="export-btn" id="export-want-btn" title="Skopiuj ID wydarzeń „chcę pójść” do schowka" data-i18n="exportWantgo" data-i18n-title="exportWantgoTitle">Eksportuj ID ♥</button>
   </div>
 </header>
 
 {''.join(day_sections)}
 
-<footer>
-  190 wydarzeń · źródło: <a href="https://fmsantcugat.cat/">fmsantcugat.cat</a> ·
-  kliknij wydarzenie, aby rozwinąć opis · kliknij ☆, aby oznaczyć gwiazdką (zapisywane lokalnie w przeglądarce)
+<footer data-i18n-html="footer">
+  {footer_html_pl}
 </footer>
 
 <script>
 const STORAGE_KEY = 'fmajor-starred-v1';
 const WANT_STORAGE_KEY = 'fmajor-wantgo-v1';
 const HIDDEN_STORAGE_KEY = 'fmajor-hidden-v1';
+const LANG_STORAGE_KEY = 'fmajor-lang-v1';
 const DEFAULT_STARRED = {json.dumps(DEFAULT_STARRED)};
+const TRANSLATIONS = {json.dumps(TRANSLATIONS, ensure_ascii=False)};
 
 function loadSet(key, defaults) {{
   const raw = localStorage.getItem(key);
@@ -399,6 +467,48 @@ function loadSet(key, defaults) {{
 function saveSet(key, set) {{
   localStorage.setItem(key, JSON.stringify([...set]));
 }}
+
+let currentLang = 'pl';
+
+function getInitialLang() {{
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  if (urlLang === 'pl' || urlLang === 'en') {{
+    localStorage.setItem(LANG_STORAGE_KEY, urlLang);
+    return urlLang;
+  }}
+  const saved = localStorage.getItem(LANG_STORAGE_KEY);
+  if (saved === 'pl' || saved === 'en') {{ return saved; }}
+  return navigator.language.startsWith('en') ? 'en' : 'pl';
+}}
+
+function setLanguage(lang) {{
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {{
+    el.textContent = TRANSLATIONS[el.dataset.i18n][lang];
+  }});
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {{
+    el.innerHTML = TRANSLATIONS[el.dataset.i18nHtml][lang];
+  }});
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {{
+    el.title = TRANSLATIONS[el.dataset.i18nTitle][lang];
+  }});
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {{
+    el.setAttribute('aria-label', TRANSLATIONS[el.dataset.i18nAria][lang]);
+  }});
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {{
+    el.placeholder = TRANSLATIONS[el.dataset.i18nPlaceholder][lang];
+  }});
+  document.querySelectorAll('.lang-btn').forEach(btn => {{
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  }});
+  localStorage.setItem(LANG_STORAGE_KEY, lang);
+}}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {{
+  btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+}});
+setLanguage(getInitialLang());
 
 let starred = loadSet(STORAGE_KEY, DEFAULT_STARRED);
 let wantToGo = loadSet(WANT_STORAGE_KEY, []);
@@ -547,7 +657,7 @@ document.getElementById('export-btn').addEventListener('click', () => {{
   navigator.clipboard.writeText(ids).then(() => {{
     const btn = document.getElementById('export-btn');
     const original = btn.textContent;
-    btn.textContent = 'Skopiowano!';
+    btn.textContent = TRANSLATIONS.copied[currentLang];
     setTimeout(() => {{ btn.textContent = original; }}, 1500);
   }});
 }});
@@ -557,7 +667,7 @@ document.getElementById('export-want-btn').addEventListener('click', () => {{
   navigator.clipboard.writeText(ids).then(() => {{
     const btn = document.getElementById('export-want-btn');
     const original = btn.textContent;
-    btn.textContent = 'Skopiowano!';
+    btn.textContent = TRANSLATIONS.copied[currentLang];
     setTimeout(() => {{ btn.textContent = original; }}, 1500);
   }});
 }});
