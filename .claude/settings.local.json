@@ -10,7 +10,10 @@
       "Bash(open schedule.html)",
       "WebSearch",
       "Bash(git commit *)",
-      "Bash(open /Users/zamkot/rep/fmajor/schedule.html)"
+      "Bash(open /Users/zamkot/rep/fmajor/schedule.html)",
+      "Read(//Users/zamkot/.agents/skills/grill-me/**)",
+      "Bash(git check-ignore *)",
+      "Bash(echo \"ignored?:$?\")"
     ]
   }
 }

@@ -43,7 +43,7 @@ def render_description(e):
     desc_ca = e.get("description_ca")
 
     original_col = (
-        f'<div class="desc-original" lang="ca">'
+        f'<div class="desc-original">'
         f'<p class="desc-original-label">Oryginał (katalońsku)</p>{desc_ca}</div>'
         if desc_ca
         else ""
@@ -80,8 +80,9 @@ def event_row(e):
     if is_parent:
         badges += '<span class="badge parent" title="Polecane dla rodziców">👪 dla rodziców</span>'
     detail_html = render_description(e)
+    search_attr = escape(f"{e['title']} {e['location']}")
     return f"""
-    <tr class="event" data-id="{e['id']}" data-cats="{cat_attr}" tabindex="0">
+    <tr class="event" data-id="{e['id']}" data-cats="{cat_attr}" data-search="{search_attr}" tabindex="0">
       <td class="star-cell"><button class="star-btn" data-id="{e['id']}" aria-label="Oznacz gwiazdką" title="Oznacz gwiazdką">☆</button></td>
       <td class="want-cell"><button class="want-btn" data-id="{e['id']}" aria-label="Chcę pójść" title="Chcę pójść">♡</button></td>
       <td class="hide-cell"><button class="hide-btn" data-id="{e['id']}" aria-label="Skryj" title="Skryj to wydarzenie">⊘</button></td>
@@ -188,6 +189,17 @@ html = f"""<!DOCTYPE html>
   .filter-btn.active {{ opacity: 1; background: color-mix(in srgb, var(--c) 12%, transparent); }}
   .filter-btn:hover {{ opacity: 0.85; }}
   .filter-btn.special {{ font-weight: bold; }}
+  .search-input {{
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.25rem 0.6rem;
+    color: var(--ink);
+    background: #fff;
+    width: 9rem;
+  }}
+  .search-input:focus {{ outline: none; border-color: var(--ink-light); }}
   .export-btn {{
     margin-left: auto;
     font-family: var(--serif);
@@ -330,11 +342,11 @@ html = f"""<!DOCTYPE html>
     color: var(--ink-light);
     margin: 0 0 0.4em;
   }}
-  [lang="ca"] {{
+  .desc-original {{
     font-size: 0.88rem;
     color: #444;
   }}
-  [lang="ca"] p {{ margin: 0.4em 0; }}
+  .desc-original p {{ margin: 0.4em 0; }}
   .badge.parent {{ color: #2a7a6b; border-color: #2a7a6b; opacity: 1; }}
   tr.hidden, tr.hidden + tr.detail-row {{ display: none; }}
   .day.empty {{ display: none; }}
@@ -352,6 +364,7 @@ html = f"""<!DOCTYPE html>
   <h1>Festa Major de Sant Cugat</h1>
   <p class="subtitle">25–29 czerwca 2026 · program wydarzeń</p>
   <div class="filters" id="filters">
+    <input type="search" id="search-input" class="search-input" placeholder="Szukaj…" aria-label="Szukaj wydarzeń">
     <button class="filter-btn active" data-cat="all" style="--c:#1a1a1a">Wszystkie</button>
     {special_filter_buttons}
     {filter_buttons}
@@ -414,9 +427,7 @@ document.querySelectorAll('.star-btn').forEach(btn => {{
     if (starred.has(id)) {{ starred.delete(id); }} else {{ starred.add(id); }}
     saveSet(STORAGE_KEY, starred);
     applyStarredState();
-    if (document.querySelector('.filter-btn.active')?.dataset.cat === '__starred__') {{
-      applyFilter('__starred__');
-    }}
+    applyFilter();
   }});
 }});
 
@@ -427,9 +438,7 @@ document.querySelectorAll('.want-btn').forEach(btn => {{
     if (wantToGo.has(id)) {{ wantToGo.delete(id); }} else {{ wantToGo.add(id); }}
     saveSet(WANT_STORAGE_KEY, wantToGo);
     applyStarredState();
-    if (document.querySelector('.filter-btn.active')?.dataset.cat === '__wantgo__') {{
-      applyFilter('__wantgo__');
-    }}
+    applyFilter();
   }});
 }});
 
@@ -440,7 +449,7 @@ document.querySelectorAll('.hide-btn').forEach(btn => {{
     if (hidden.has(id)) {{ hidden.delete(id); }} else {{ hidden.add(id); }}
     saveSet(HIDDEN_STORAGE_KEY, hidden);
     applyStarredState();
-    applyFilter(document.querySelector('.filter-btn.active')?.dataset.cat ?? 'all');
+    applyFilter();
   }});
 }});
 
@@ -463,32 +472,75 @@ document.getElementById('collapse-all-btn').addEventListener('click', () => {{
 }});
 
 const filterBtns = document.querySelectorAll('.filter-btn');
-function applyFilter(cat) {{
+const searchInput = document.getElementById('search-input');
+const activeCats = new Set();
+
+function rowMatchesCat(row, cat) {{
+  if (cat === '__starred__') return row.classList.contains('starred');
+  if (cat === '__wantgo__') return row.classList.contains('want-to-go');
+  return row.dataset.cats.split(' ').includes(cat);
+}}
+
+function normalizeSearch(s) {{
+  return s.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();
+}}
+
+function fuzzyMatch(query, text) {{
+  query = normalizeSearch(query);
+  text = normalizeSearch(text);
+  let qi = 0;
+  for (let i = 0; i < text.length && qi < query.length; i++) {{
+    if (text[i] === query[qi]) qi++;
+  }}
+  return qi === query.length;
+}}
+
+function applyFilter() {{
+  const query = searchInput.value.trim();
   document.querySelectorAll('tr.event').forEach(row => {{
-    if (cat === '__hidden__') {{
-      row.classList.toggle('hidden', !row.classList.contains('is-hidden'));
-      return;
-    }}
     let show;
-    if (cat === 'all') {{ show = true; }}
-    else if (cat === '__starred__') {{ show = row.classList.contains('starred'); }}
-    else if (cat === '__wantgo__') {{ show = row.classList.contains('want-to-go'); }}
-    else {{ show = row.dataset.cats.split(' ').includes(cat); }}
-    if (row.classList.contains('is-hidden')) {{ show = false; }}
+    if (activeCats.has('__hidden__')) {{
+      show = row.classList.contains('is-hidden');
+    }} else {{
+      show = activeCats.size === 0 || [...activeCats].some(cat => rowMatchesCat(row, cat));
+      if (row.classList.contains('is-hidden')) {{ show = false; }}
+    }}
+    if (show && query) {{ show = fuzzyMatch(query, row.dataset.search); }}
     row.classList.toggle('hidden', !show);
   }});
   document.querySelectorAll('.day').forEach(day => {{
     const visible = day.querySelectorAll('tr.event:not(.hidden)').length > 0;
     day.classList.toggle('empty', !visible);
   }});
-}}
-filterBtns.forEach(btn => {{
-  btn.addEventListener('click', () => {{
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    applyFilter(btn.dataset.cat);
+  filterBtns.forEach(btn => {{
+    const cat = btn.dataset.cat;
+    const active = cat === 'all' ? activeCats.size === 0 : activeCats.has(cat);
+    btn.classList.toggle('active', active);
   }});
+}}
+
+function toggleFilter(cat) {{
+  if (cat === 'all') {{
+    activeCats.clear();
+  }} else if (cat === '__hidden__') {{
+    if (activeCats.size === 1 && activeCats.has('__hidden__')) {{
+      activeCats.clear();
+    }} else {{
+      activeCats.clear();
+      activeCats.add('__hidden__');
+    }}
+  }} else {{
+    activeCats.delete('__hidden__');
+    if (activeCats.has(cat)) {{ activeCats.delete(cat); }} else {{ activeCats.add(cat); }}
+  }}
+  applyFilter();
+}}
+
+filterBtns.forEach(btn => {{
+  btn.addEventListener('click', () => toggleFilter(btn.dataset.cat));
 }});
+searchInput.addEventListener('input', applyFilter);
+applyFilter();
 
 document.getElementById('export-btn').addEventListener('click', () => {{
   const ids = JSON.stringify([...starred]);
