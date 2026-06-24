@@ -79,6 +79,7 @@ def event_row(e):
     return f"""
     <tr class="event" data-id="{e['id']}" data-cats="{cat_attr}" tabindex="0">
       <td class="star-cell"><button class="star-btn" data-id="{e['id']}" aria-label="Oznacz gwiazdką" title="Oznacz gwiazdką">☆</button></td>
+      <td class="want-cell"><button class="want-btn" data-id="{e['id']}" aria-label="Chcę pójść" title="Chcę pójść">♡</button></td>
       <td class="time">{escape(e['time_pl'])}</td>
       <td class="title">
         <a href="{escape(e['url'])}" target="_blank" rel="noopener">{escape(e['title'])}</a>
@@ -86,7 +87,7 @@ def event_row(e):
       </td>
       <td class="loc">{escape(e['location'])}</td>
     </tr>
-    <tr class="detail-row"><td colspan="4"><div class="detail">{detail_html}</div></td></tr>
+    <tr class="detail-row"><td colspan="5"><div class="detail">{detail_html}</div></td></tr>
     """
 
 
@@ -113,6 +114,7 @@ filter_buttons = "".join(
 )
 special_filter_buttons = (
     '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b">★ Twoje wybrane</button>'
+    '<button class="filter-btn special" data-cat="__wantgo__" style="--c:#2a6ea3">♥ Chcę pójść</button>'
     '<button class="filter-btn special" data-cat="__parents__" style="--c:#2a7a6b">👪 Dla rodziców</button>'
 )
 
@@ -214,7 +216,10 @@ html = f"""<!DOCTYPE html>
   tr.event.starred td {{ background: #fdf6e3; }}
   tr.event.starred:hover td {{ background: #fbeec9; }}
   tr.event.starred td.time {{ border-left: 3px solid #b8860b; padding-left: calc(0.3rem - 3px); }}
-  td.star-cell {{
+  tr.event.want-to-go:not(.starred) td {{ background: #eef4fa; }}
+  tr.event.want-to-go:not(.starred):hover td {{ background: #e0ecf6; }}
+  tr.event.want-to-go:not(.starred) td.time {{ border-left: 3px solid #2a6ea3; padding-left: calc(0.3rem - 3px); }}
+  td.star-cell, td.want-cell {{
     width: 1.6rem;
     text-align: center;
     cursor: pointer;
@@ -226,6 +231,15 @@ html = f"""<!DOCTYPE html>
     line-height: 1;
     cursor: pointer;
     color: #b8860b;
+    padding: 0;
+  }}
+  .want-btn {{
+    background: none;
+    border: none;
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #2a6ea3;
     padding: 0;
   }}
   tr.event .title {{ cursor: pointer; }}
@@ -319,6 +333,7 @@ html = f"""<!DOCTYPE html>
     {special_filter_buttons}
     {filter_buttons}
     <button class="export-btn" id="export-btn" title="Skopiuj ID oznaczonych gwiazdką wydarzeń do schowka">Eksportuj ID ★</button>
+    <button class="export-btn" id="export-want-btn" title="Skopiuj ID wydarzeń „chcę pójść” do schowka">Eksportuj ID ♥</button>
   </div>
 </header>
 
@@ -331,29 +346,33 @@ html = f"""<!DOCTYPE html>
 
 <script>
 const STORAGE_KEY = 'fmajor-starred-v1';
+const WANT_STORAGE_KEY = 'fmajor-wantgo-v1';
 const DEFAULT_STARRED = {json.dumps(DEFAULT_STARRED)};
 
-function loadStarred() {{
-  const raw = localStorage.getItem(STORAGE_KEY);
+function loadSet(key, defaults) {{
+  const raw = localStorage.getItem(key);
   if (raw === null) {{
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_STARRED));
-    return new Set(DEFAULT_STARRED);
+    localStorage.setItem(key, JSON.stringify(defaults));
+    return new Set(defaults);
   }}
   try {{ return new Set(JSON.parse(raw)); }} catch {{ return new Set(); }}
 }}
-function saveStarred(set) {{
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+function saveSet(key, set) {{
+  localStorage.setItem(key, JSON.stringify([...set]));
 }}
 
-let starred = loadStarred();
+let starred = loadSet(STORAGE_KEY, DEFAULT_STARRED);
+let wantToGo = loadSet(WANT_STORAGE_KEY, []);
 
 function applyStarredState() {{
   document.querySelectorAll('tr.event').forEach(row => {{
     const id = Number(row.dataset.id);
     const isStarred = starred.has(id);
     row.classList.toggle('starred', isStarred);
-    const btn = row.querySelector('.star-btn');
-    btn.textContent = isStarred ? '★' : '☆';
+    row.querySelector('.star-btn').textContent = isStarred ? '★' : '☆';
+    const isWant = wantToGo.has(id);
+    row.classList.toggle('want-to-go', isWant);
+    row.querySelector('.want-btn').textContent = isWant ? '♥' : '♡';
   }});
 }}
 applyStarredState();
@@ -363,10 +382,23 @@ document.querySelectorAll('.star-btn').forEach(btn => {{
     e.stopPropagation();
     const id = Number(btn.dataset.id);
     if (starred.has(id)) {{ starred.delete(id); }} else {{ starred.add(id); }}
-    saveStarred(starred);
+    saveSet(STORAGE_KEY, starred);
     applyStarredState();
     if (document.querySelector('.filter-btn.active')?.dataset.cat === '__starred__') {{
       applyFilter('__starred__');
+    }}
+  }});
+}});
+
+document.querySelectorAll('.want-btn').forEach(btn => {{
+  btn.addEventListener('click', e => {{
+    e.stopPropagation();
+    const id = Number(btn.dataset.id);
+    if (wantToGo.has(id)) {{ wantToGo.delete(id); }} else {{ wantToGo.add(id); }}
+    saveSet(WANT_STORAGE_KEY, wantToGo);
+    applyStarredState();
+    if (document.querySelector('.filter-btn.active')?.dataset.cat === '__wantgo__') {{
+      applyFilter('__wantgo__');
     }}
   }});
 }});
@@ -384,6 +416,7 @@ function applyFilter(cat) {{
     let show;
     if (cat === 'all') {{ show = true; }}
     else if (cat === '__starred__') {{ show = row.classList.contains('starred'); }}
+    else if (cat === '__wantgo__') {{ show = row.classList.contains('want-to-go'); }}
     else {{ show = row.dataset.cats.split(' ').includes(cat); }}
     row.classList.toggle('hidden', !show);
   }});
@@ -404,6 +437,16 @@ document.getElementById('export-btn').addEventListener('click', () => {{
   const ids = JSON.stringify([...starred]);
   navigator.clipboard.writeText(ids).then(() => {{
     const btn = document.getElementById('export-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Skopiowano!';
+    setTimeout(() => {{ btn.textContent = original; }}, 1500);
+  }});
+}});
+
+document.getElementById('export-want-btn').addEventListener('click', () => {{
+  const ids = JSON.stringify([...wantToGo]);
+  navigator.clipboard.writeText(ids).then(() => {{
+    const btn = document.getElementById('export-want-btn');
     const original = btn.textContent;
     btn.textContent = 'Skopiowano!';
     setTimeout(() => {{ btn.textContent = original; }}, 1500);
