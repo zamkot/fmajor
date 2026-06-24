@@ -26,7 +26,8 @@
       "mcp__playwright__browser_take_screenshot",
       "mcp__playwright__browser_handle_dialog",
       "mcp__playwright__browser_resize",
-      "Bash(git ls-tree *)"
+      "Bash(git ls-tree *)",
+      "Bash(./.claude/skills/pick-events/scripts/make_share_link.sh 1280 *)"
     ]
   },
   "enabledMcpjsonServers": [
