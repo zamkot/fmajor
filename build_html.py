@@ -42,23 +42,27 @@ def render_description(e):
     desc_pl = e.get("description_pl")
     desc_ca = e.get("description_ca")
 
+    original_col = (
+        f'<div class="desc-original" lang="ca">'
+        f'<p class="desc-original-label">Oryginał (katalońsku)</p>{desc_ca}</div>'
+        if desc_ca
+        else ""
+    )
+
     if desc_pl:
         pl_html = "".join(f"<p>{escape(p)}</p>" for p in desc_pl.split("\n\n"))
-        parts = [f'<div class="desc-pl">{pl_html}</div>']
-        if desc_ca:
-            parts.append(
-                '<details class="original"><summary>Oryginał (katalońsku)</summary>'
-                f'<div lang="ca">{desc_ca}</div></details>'
-            )
-        return "".join(parts)
+        left_col = f'<div class="desc-pl">{pl_html}</div>'
+        if original_col:
+            return f'<div class="desc-cols">{left_col}{original_col}</div>'
+        return left_col
 
     if desc_ca:
-        return (
+        note = (
             '<p class="desc-note">Brak tłumaczenia — oryginał po katalońsku '
             "(kliknij prawym przyciskiem myszy i wybierz „Przetłumacz na polski”, "
             'jeśli używasz Chrome):</p>'
-            f'<div lang="ca">{desc_ca}</div>'
         )
+        return f'<div class="desc-cols"><div class="desc-pl">{note}</div>{original_col}</div>'
 
     return '<p class="desc-note placeholder">Brak opisu dla tego wydarzenia.</p>'
 
@@ -80,6 +84,7 @@ def event_row(e):
     <tr class="event" data-id="{e['id']}" data-cats="{cat_attr}" tabindex="0">
       <td class="star-cell"><button class="star-btn" data-id="{e['id']}" aria-label="Oznacz gwiazdką" title="Oznacz gwiazdką">☆</button></td>
       <td class="want-cell"><button class="want-btn" data-id="{e['id']}" aria-label="Chcę pójść" title="Chcę pójść">♡</button></td>
+      <td class="hide-cell"><button class="hide-btn" data-id="{e['id']}" aria-label="Skryj" title="Skryj to wydarzenie">⊘</button></td>
       <td class="time">{escape(e['time_pl'])}</td>
       <td class="title">
         <a href="{escape(e['url'])}" target="_blank" rel="noopener">{escape(e['title'])}</a>
@@ -87,7 +92,7 @@ def event_row(e):
       </td>
       <td class="loc">{escape(e['location'])}</td>
     </tr>
-    <tr class="detail-row"><td colspan="5"><div class="detail">{detail_html}</div></td></tr>
+    <tr class="detail-row"><td colspan="6"><div class="detail">{detail_html}</div></td></tr>
     """
 
 
@@ -116,6 +121,7 @@ special_filter_buttons = (
     '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b">★ Twoje wybrane</button>'
     '<button class="filter-btn special" data-cat="__wantgo__" style="--c:#2a6ea3">♥ Chcę pójść</button>'
     '<button class="filter-btn special" data-cat="__parents__" style="--c:#2a7a6b">👪 Dla rodziców</button>'
+    '<button class="filter-btn special" data-cat="__hidden__" style="--c:#a33">⊘ Skryte</button>'
 )
 
 html = f"""<!DOCTYPE html>
@@ -219,7 +225,8 @@ html = f"""<!DOCTYPE html>
   tr.event.want-to-go:not(.starred) td {{ background: #eef4fa; }}
   tr.event.want-to-go:not(.starred):hover td {{ background: #e0ecf6; }}
   tr.event.want-to-go:not(.starred) td.time {{ border-left: 3px solid #2a6ea3; padding-left: calc(0.3rem - 3px); }}
-  td.star-cell, td.want-cell {{
+  tr.event.is-hidden td {{ opacity: 0.5; }}
+  td.star-cell, td.want-cell, td.hide-cell {{
     width: 1.6rem;
     text-align: center;
     cursor: pointer;
@@ -242,6 +249,16 @@ html = f"""<!DOCTYPE html>
     color: #2a6ea3;
     padding: 0;
   }}
+  .hide-btn {{
+    background: none;
+    border: none;
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+  }}
+  tr.event.is-hidden .hide-btn {{ color: #a33; }}
   tr.event .title {{ cursor: pointer; }}
   td.time {{
     font-variant-numeric: tabular-nums;
@@ -290,7 +307,6 @@ html = f"""<!DOCTYPE html>
     margin: 0 0 0.6em;
     font-size: 0.92rem;
     color: #333;
-    max-width: 38em;
     white-space: pre-line;
   }}
   .desc-note {{
@@ -300,16 +316,23 @@ html = f"""<!DOCTYPE html>
     font-style: italic;
   }}
   .desc-note.placeholder {{ color: #999; }}
-  details.original {{ margin-top: 0.4rem; }}
-  details.original summary {{
+  .desc-cols {{
+    display: flex;
+    gap: 1.8rem;
+    align-items: flex-start;
+  }}
+  .desc-cols > div {{ flex: 1 1 50%; min-width: 0; }}
+  @media (max-width: 700px) {{
+    .desc-cols {{ flex-direction: column; gap: 0.6rem; }}
+  }}
+  .desc-original-label {{
     font-size: 0.78rem;
     color: var(--ink-light);
-    cursor: pointer;
+    margin: 0 0 0.4em;
   }}
   [lang="ca"] {{
     font-size: 0.88rem;
     color: #444;
-    max-width: 38em;
   }}
   [lang="ca"] p {{ margin: 0.4em 0; }}
   .badge.parent {{ color: #2a7a6b; border-color: #2a7a6b; opacity: 1; }}
@@ -332,6 +355,8 @@ html = f"""<!DOCTYPE html>
     <button class="filter-btn active" data-cat="all" style="--c:#1a1a1a">Wszystkie</button>
     {special_filter_buttons}
     {filter_buttons}
+    <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń">Rozwiń wszystko</button>
+    <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń">Zwiń wszystko</button>
     <button class="export-btn" id="export-btn" title="Skopiuj ID oznaczonych gwiazdką wydarzeń do schowka">Eksportuj ID ★</button>
     <button class="export-btn" id="export-want-btn" title="Skopiuj ID wydarzeń „chcę pójść” do schowka">Eksportuj ID ♥</button>
   </div>
@@ -347,6 +372,7 @@ html = f"""<!DOCTYPE html>
 <script>
 const STORAGE_KEY = 'fmajor-starred-v1';
 const WANT_STORAGE_KEY = 'fmajor-wantgo-v1';
+const HIDDEN_STORAGE_KEY = 'fmajor-hidden-v1';
 const DEFAULT_STARRED = {json.dumps(DEFAULT_STARRED)};
 
 function loadSet(key, defaults) {{
@@ -363,6 +389,7 @@ function saveSet(key, set) {{
 
 let starred = loadSet(STORAGE_KEY, DEFAULT_STARRED);
 let wantToGo = loadSet(WANT_STORAGE_KEY, []);
+let hidden = loadSet(HIDDEN_STORAGE_KEY, []);
 
 function applyStarredState() {{
   document.querySelectorAll('tr.event').forEach(row => {{
@@ -373,6 +400,9 @@ function applyStarredState() {{
     const isWant = wantToGo.has(id);
     row.classList.toggle('want-to-go', isWant);
     row.querySelector('.want-btn').textContent = isWant ? '♥' : '♡';
+    const isHidden = hidden.has(id);
+    row.classList.toggle('is-hidden', isHidden);
+    row.querySelector('.hide-btn').textContent = isHidden ? '🚫' : '⊘';
   }});
 }}
 applyStarredState();
@@ -403,6 +433,17 @@ document.querySelectorAll('.want-btn').forEach(btn => {{
   }});
 }});
 
+document.querySelectorAll('.hide-btn').forEach(btn => {{
+  btn.addEventListener('click', e => {{
+    e.stopPropagation();
+    const id = Number(btn.dataset.id);
+    if (hidden.has(id)) {{ hidden.delete(id); }} else {{ hidden.add(id); }}
+    saveSet(HIDDEN_STORAGE_KEY, hidden);
+    applyStarredState();
+    applyFilter(document.querySelector('.filter-btn.active')?.dataset.cat ?? 'all');
+  }});
+}});
+
 document.querySelectorAll('tr.event').forEach(row => {{
   row.addEventListener('click', () => row.classList.toggle('open'));
   row.addEventListener('keydown', e => {{
@@ -410,14 +451,30 @@ document.querySelectorAll('tr.event').forEach(row => {{
   }});
 }});
 
+document.querySelectorAll('td.title a').forEach(a => {{
+  a.addEventListener('click', e => e.stopPropagation());
+}});
+
+document.getElementById('expand-all-btn').addEventListener('click', () => {{
+  document.querySelectorAll('tr.event').forEach(row => row.classList.add('open'));
+}});
+document.getElementById('collapse-all-btn').addEventListener('click', () => {{
+  document.querySelectorAll('tr.event').forEach(row => row.classList.remove('open'));
+}});
+
 const filterBtns = document.querySelectorAll('.filter-btn');
 function applyFilter(cat) {{
   document.querySelectorAll('tr.event').forEach(row => {{
+    if (cat === '__hidden__') {{
+      row.classList.toggle('hidden', !row.classList.contains('is-hidden'));
+      return;
+    }}
     let show;
     if (cat === 'all') {{ show = true; }}
     else if (cat === '__starred__') {{ show = row.classList.contains('starred'); }}
     else if (cat === '__wantgo__') {{ show = row.classList.contains('want-to-go'); }}
     else {{ show = row.dataset.cats.split(' ').includes(cat); }}
+    if (row.classList.contains('is-hidden')) {{ show = false; }}
     row.classList.toggle('hidden', !show);
   }});
   document.querySelectorAll('.day').forEach(day => {{
