@@ -51,29 +51,40 @@ DESC_EMPTY_PL = 'Brak opisu dla tego wydarzenia.'
 DESC_EMPTY_EN = 'No description for this event.'
 
 
-def render_description(e):
-    desc_pl = e.get("description_pl")
-    desc_ca = e.get("description_ca")
-
+def render_description_lang(desc_ca, desc_text, note_html, empty_text, original_label):
     original_col = (
         f'<div class="desc-original">'
-        f'<p class="desc-original-label" data-i18n="descOriginalLabel">Oryginał (katalońsku)</p>{desc_ca}</div>'
+        f'<p class="desc-original-label">{original_label}</p>{desc_ca}</div>'
         if desc_ca
         else ""
     )
 
-    if desc_pl:
-        pl_html = "".join(f"<p>{escape(p)}</p>" for p in desc_pl.split("\n\n"))
-        left_col = f'<div class="desc-pl">{pl_html}</div>'
+    if desc_text:
+        text_html = "".join(f"<p>{escape(p)}</p>" for p in desc_text.split("\n\n"))
+        left_col = f'<div class="desc-pl">{text_html}</div>'
         if original_col:
             return f'<div class="desc-cols">{left_col}{original_col}</div>'
         return left_col
 
     if desc_ca:
-        note = f'<div class="desc-pl" data-i18n-html="descNoTranslation">{DESC_NOTE_PL}</div>'
+        note = f'<div class="desc-pl">{note_html}</div>'
         return f'<div class="desc-cols">{note}{original_col}</div>'
 
-    return f'<p class="desc-note placeholder" data-i18n="descEmpty">{DESC_EMPTY_PL}</p>'
+    return f'<p class="desc-note placeholder">{empty_text}</p>'
+
+
+def render_description(e):
+    desc_ca = e.get("description_ca")
+    pl_block = render_description_lang(
+        desc_ca, e.get("description_pl"), DESC_NOTE_PL, DESC_EMPTY_PL, "Oryginał (katalońsku)"
+    )
+    en_block = render_description_lang(
+        desc_ca, e.get("description_en"), DESC_NOTE_EN, DESC_EMPTY_EN, "Original (Catalan)"
+    )
+    return (
+        f'<div class="desc-lang" data-lang="pl">{pl_block}</div>'
+        f'<div class="desc-lang" data-lang="en">{en_block}</div>'
+    )
 
 
 def event_row(e):
@@ -163,9 +174,6 @@ TRANSLATIONS = {
     "wantLabel": {"pl": "Chcę pójść", "en": "Want to go"},
     "hideAria": {"pl": "Skryj", "en": "Hide"},
     "hideTitle": {"pl": "Skryj to wydarzenie", "en": "Hide this event"},
-    "descOriginalLabel": {"pl": "Oryginał (katalońsku)", "en": "Original (Catalan)"},
-    "descNoTranslation": {"pl": DESC_NOTE_PL, "en": DESC_NOTE_EN},
-    "descEmpty": {"pl": DESC_EMPTY_PL, "en": DESC_EMPTY_EN},
     "footer": {"pl": footer_html_pl, "en": footer_html_en},
     "copied": {"pl": "Skopiowano!", "en": "Copied!"},
 }
@@ -410,6 +418,9 @@ html = f"""<!DOCTYPE html>
     color: #444;
   }}
   .desc-original p {{ margin: 0.4em 0; }}
+  .desc-lang {{ display: none; }}
+  html[lang="pl"] .desc-lang[data-lang="pl"] {{ display: block; }}
+  html[lang="en"] .desc-lang[data-lang="en"] {{ display: block; }}
   .badge.parent {{ color: #2a7a6b; border-color: #2a7a6b; opacity: 1; }}
   tr.hidden, tr.hidden + tr.detail-row {{ display: none; }}
   .day.empty {{ display: none; }}
