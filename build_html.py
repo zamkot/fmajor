@@ -34,18 +34,6 @@ CATEGORY_TRANSLATIONS = {
 # Castellers, Correfoc (x2), Botifarrada (x2), "Paella" (Concurs d'Arrossos).
 DEFAULT_STARRED = [1359, 1316, 1385, 1936, 1310, 1395]
 
-# Calmer, visual, no-fire picks suggested for first-time-visiting parents.
-PARENT_PICKS = {1359, 1316, 1385}  # castellers + both correfocs, watched from a distance
-PARENT_EXTRA = {
-    "38a Trobada gegantera: plantada de gegants",
-    "38a Trobada gegantera: cercavila de gegants",
-    "38a Trobada gegantera: ball conjunt",
-    "Ballada de sardanes",
-    "XV Trobada de balls i entremesos d’arreu de Catalunya: cercavila",
-}
-PARENT_IDS = PARENT_PICKS | {e["id"] for e in events if e["title"].strip() in PARENT_EXTRA}
-
-
 DESC_NOTE_PL = (
     '<p class="desc-note">Brak tłumaczenia — oryginał po katalońsku '
     "(kliknij prawym przyciskiem myszy i wybierz „Przetłumacz na polski”, "
@@ -97,17 +85,12 @@ def render_description(e):
 
 def event_row(e):
     cat_slugs = [CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["slug"] for c in e["categories_pl"]]
-    is_parent = e["id"] in PARENT_IDS
-    if is_parent:
-        cat_slugs.append("__parents__")
     cat_attr = escape(" ".join(cat_slugs))
     badges = "".join(
         f'<span class="badge" data-i18n-cat="{CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["slug"]}" '
         f'style="--c:{CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["color"]}">{escape(c)}</span>'
         for c in e["categories_pl"]
     )
-    if is_parent:
-        badges += '<span class="badge parent" title="Polecane dla rodziców">👪 dla rodziców</span>'
     detail_html = render_description(e)
     search_attr = escape(f"{e['title']} {e['location']}")
     return f"""
@@ -170,7 +153,6 @@ filter_buttons = "".join(
 special_filter_buttons = (
     '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b" data-i18n="filterStarred">★ Twoje wybrane</button>'
     '<button class="filter-btn special" data-cat="__wantgo__" style="--c:#2a6ea3" data-i18n="filterWantgo">♥ Chcę pójść</button>'
-    '<button class="filter-btn special" data-cat="__parents__" style="--c:#2a7a6b" data-i18n="filterParents">👪 Dla rodziców</button>'
     '<button class="filter-btn special" data-cat="__hidden__" style="--c:#a33" data-i18n="filterHidden">⊘ Skryte</button>'
 )
 
@@ -189,7 +171,6 @@ TRANSLATIONS = {
     "filterAll": {"pl": "Wszystkie", "en": "All"},
     "filterStarred": {"pl": "★ Twoje wybrane", "en": "★ Your picks"},
     "filterWantgo": {"pl": "♥ Chcę pójść", "en": "♥ Want to go"},
-    "filterParents": {"pl": "👪 Dla rodziców", "en": "👪 For parents"},
     "filterHidden": {"pl": "⊘ Skryte", "en": "⊘ Hidden"},
     "groupPersonal": {"pl": "Twoje listy:", "en": "My lists:"},
     "groupCategory": {"pl": "Kategoria:", "en": "Category:"},
@@ -533,7 +514,6 @@ html = f"""<!DOCTYPE html>
   .day-date {{ display: none; }}
   html[lang="pl"] .day-date[data-lang="pl"] {{ display: inline; }}
   html[lang="en"] .day-date[data-lang="en"] {{ display: inline; }}
-  .badge.parent {{ color: #2a7a6b; border-color: #2a7a6b; opacity: 1; }}
   tr.hidden, tr.hidden + tr.detail-row {{ display: none; }}
   .day.empty {{ display: none; }}
   footer {{
