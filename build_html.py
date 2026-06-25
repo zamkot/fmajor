@@ -508,6 +508,29 @@ html = f"""<!DOCTYPE html>
   .desc-cols > div {{ flex: 1 1 50%; min-width: 0; }}
   @media (max-width: 700px) {{
     .desc-cols {{ flex-direction: column; gap: 0.6rem; }}
+    thead {{ display: none; }}
+    table, tbody {{ display: block; width: 100%; }}
+    tr.event {{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }}
+    tr.event td {{ padding: 0; border-bottom: none; }}
+    tr.event td.time {{ order: 1; flex: 0 0 auto; width: auto; font-size: 0.85rem; }}
+    tr.event td.star-cell, tr.event td.want-cell, tr.event td.hide-cell {{ width: auto; }}
+    tr.event td.star-cell {{ order: 2; margin-left: auto; }}
+    tr.event td.want-cell {{ order: 3; }}
+    tr.event td.hide-cell {{ order: 4; }}
+    tr.event td.title {{ order: 5; flex: 1 1 100%; padding-top: 0.3rem; }}
+    tr.event td.loc {{ order: 6; flex: 1 1 100%; text-align: left; width: auto; padding-top: 0.15rem; }}
+    tr.event td.loc .expand-cue {{ float: right; }}
+    tr.detail-row {{ display: block; }}
+    tr.detail-row td {{ display: block; padding: 0; }}
+    tr.event.open + tr.detail-row .detail {{ padding: 0.3rem 0.1rem 0.9rem 0.1rem; }}
   }}
   .desc-original-label {{
     font-size: 0.78rem;
