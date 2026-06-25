@@ -25,6 +25,7 @@ CATEGORY_INFO = {
 FALLBACK_CATEGORY_INFO = {"slug": "altres", "en": "Other", "color": "#666"}
 
 all_category_labels = sorted({c for e in events for c in e["categories_pl"]})
+all_locations = sorted({e["location"] for e in events})
 CATEGORY_TRANSLATIONS = {
     CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["slug"]: {"pl": c, "en": CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["en"]}
     for c in all_category_labels
@@ -89,8 +90,9 @@ def event_row(e):
     )
     detail_html = render_description(e)
     search_attr = escape(f"{e['title']} {e['location']}")
+    loc_attr = escape(e["location"])
     return f"""
-    <tr class="event" data-id="{e['id']}" data-cats="{cat_attr}" data-search="{search_attr}" tabindex="0">
+    <tr class="event" data-id="{e['id']}" data-cats="{cat_attr}" data-loc="{loc_attr}" data-search="{search_attr}" tabindex="0">
       <td class="star-cell"><button class="star-btn" data-id="{e['id']}" aria-label="Oznacz gwiazdką" title="Oznacz gwiazdką" data-i18n-aria="starLabel" data-i18n-title="starLabel">☆</button></td>
       <td class="want-cell"><button class="want-btn" data-id="{e['id']}" aria-label="Chcę pójść" title="Chcę pójść" data-i18n-aria="wantLabel" data-i18n-title="wantLabel">♡</button></td>
       <td class="hide-cell"><button class="hide-btn" data-id="{e['id']}" aria-label="Skryj" title="Skryj to wydarzenie" data-i18n-aria="hideAria" data-i18n-title="hideTitle">⊘</button></td>
@@ -146,6 +148,9 @@ filter_buttons = "".join(
     f'style="--c:{CATEGORY_INFO.get(c, FALLBACK_CATEGORY_INFO)["color"]}">{escape(c)}</button>'
     for c in all_category_labels
 )
+location_options = "".join(
+    f'<option value="{escape(loc)}">{escape(loc)}</option>' for loc in all_locations
+)
 special_filter_buttons = (
     '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b" data-i18n="filterStarred">★ Twoje wybrane</button>'
     '<button class="filter-btn special" data-cat="__wantgo__" style="--c:#2a6ea3" data-i18n="filterWantgo">♥ Chcę pójść</button>'
@@ -200,6 +205,9 @@ TRANSLATIONS = {
     "ownerFilterPrefix": {"pl": "👀 Wybory: ", "en": "👀 Picks: "},
     "colEvent": {"pl": "Wydarzenie", "en": "Event"},
     "colLocation": {"pl": "Miejsce", "en": "Location"},
+    "groupLocation": {"pl": "Lokalizacja:", "en": "Location:"},
+    "filterAllLocations": {"pl": "Wszystkie lokalizacje", "en": "All locations"},
+    "locationSelectAria": {"pl": "Filtruj po lokalizacji", "en": "Filter by location"},
     "starLabel": {"pl": "Oznacz gwiazdką", "en": "Star this event"},
     "wantLabel": {"pl": "Chcę pójść", "en": "Want to go"},
     "hideAria": {"pl": "Skryj", "en": "Hide"},
@@ -327,6 +335,17 @@ html = f"""<!DOCTYPE html>
     width: 9rem;
   }}
   .search-input:focus {{ outline: none; border-color: var(--ink-light); }}
+  .location-select {{
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.25rem 0.4rem;
+    color: var(--ink);
+    background: #fff;
+    max-width: 14rem;
+  }}
+  .location-select:focus {{ outline: none; border-color: var(--ink-light); }}
   .toolbar {{
     display: flex;
     flex-wrap: wrap;
@@ -541,6 +560,7 @@ html = f"""<!DOCTYPE html>
       justify-content: center;
     }}
     .filter-btn {{ padding: 0.4rem 0.75rem; font-size: 0.85rem; }}
+    .location-select {{ max-width: 100%; flex: 1 1 100%; padding: 0.4rem 0.5rem; font-size: 0.85rem; }}
     .lang-btn {{ padding: 0.35rem 0.7rem; font-size: 0.78rem; }}
     .export-btn {{ padding: 0.4rem 0.75rem; font-size: 0.8rem; }}
   }}
@@ -591,6 +611,13 @@ html = f"""<!DOCTYPE html>
   <div class="filter-group" id="category-filters">
     <span class="filter-group-label" data-i18n="groupCategory">Kategoria:</span>
     {filter_buttons}
+  </div>
+  <div class="filter-group" id="location-filters">
+    <span class="filter-group-label" data-i18n="groupLocation">Lokalizacja:</span>
+    <select id="location-select" class="location-select" aria-label="Filtruj po lokalizacji" data-i18n-aria="locationSelectAria">
+      <option value="" data-i18n="filterAllLocations">Wszystkie lokalizacje</option>
+      {location_options}
+    </select>
   </div>
   <div class="filter-group" id="share-toolbar">
     <span class="filter-group-label" data-i18n="groupShare">Udostępnianie:</span>
@@ -896,7 +923,9 @@ document.getElementById('collapse-all-btn').addEventListener('click', () => {{
 
 const filterBtns = document.querySelectorAll('.filter-btn');
 const searchInput = document.getElementById('search-input');
+const locationSelect = document.getElementById('location-select');
 const activeCats = new Set();
+let activeLoc = '';
 
 function rowMatchesCat(row, cat) {{
   if (cat === '__starred__') return row.classList.contains('starred');
@@ -933,6 +962,7 @@ function applyFilter() {{
       show = activeCats.size === 0 || [...activeCats].some(cat => rowMatchesCat(row, cat));
       if (row.classList.contains('is-hidden')) {{ show = false; }}
     }}
+    if (show && activeLoc) {{ show = row.dataset.loc === activeLoc; }}
     if (show && query) {{ show = fuzzyMatch(query, row.dataset.search); }}
     row.classList.toggle('hidden', !show);
   }});
@@ -950,6 +980,8 @@ function applyFilter() {{
 function toggleFilter(cat) {{
   if (cat === 'all') {{
     activeCats.clear();
+    activeLoc = '';
+    locationSelect.value = '';
   }} else if (cat === '__hidden__') {{
     if (activeCats.size === 1 && activeCats.has('__hidden__')) {{
       activeCats.clear();
@@ -968,6 +1000,10 @@ filterBtns.forEach(btn => {{
   btn.addEventListener('click', () => toggleFilter(btn.dataset.cat));
 }});
 searchInput.addEventListener('input', applyFilter);
+locationSelect.addEventListener('change', () => {{
+  activeLoc = locationSelect.value;
+  applyFilter();
+}});
 if (shareData) {{ activeCats.add('__ownertouched__'); }}
 applyFilter();
 
