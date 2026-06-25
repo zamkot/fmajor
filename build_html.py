@@ -102,7 +102,7 @@ def event_row(e):
         <a href="{escape(e['url'])}" target="_blank" rel="noopener">{escape(e['title'])}</a>
         {badges}
       </td>
-      <td class="loc">{escape(e['location'])}</td>
+      <td class="loc">{escape(e['location'])}<span class="expand-cue" aria-hidden="true">&#9662;</span></td>
     </tr>
     <tr class="detail-row"><td colspan="9"><div class="detail">{detail_html}</div></td></tr>
     """
@@ -458,6 +458,14 @@ html = f"""<!DOCTYPE html>
     width: 11rem;
     cursor: pointer;
   }}
+  .expand-cue {{
+    display: inline-block;
+    margin-left: 0.45rem;
+    color: var(--ink-light);
+    transition: transform 0.2s ease;
+    transform: rotate(-90deg);
+  }}
+  tr.event.open .expand-cue {{ transform: rotate(0deg); }}
   .badge {{
     display: inline-block;
     font-size: 0.68rem;
