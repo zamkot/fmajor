@@ -531,6 +531,18 @@ html = f"""<!DOCTYPE html>
     tr.detail-row {{ display: block; }}
     tr.detail-row td {{ display: block; padding: 0; }}
     tr.event.open + tr.detail-row .detail {{ padding: 0.3rem 0.1rem 0.9rem 0.1rem; }}
+    .star-btn, .want-btn, .hide-btn {{
+      font-size: 1.3rem;
+      padding: 0.5rem;
+      min-width: 2.6rem;
+      min-height: 2.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }}
+    .filter-btn {{ padding: 0.4rem 0.75rem; font-size: 0.85rem; }}
+    .lang-btn {{ padding: 0.35rem 0.7rem; font-size: 0.78rem; }}
+    .export-btn {{ padding: 0.4rem 0.75rem; font-size: 0.8rem; }}
   }}
   .desc-original-label {{
     font-size: 0.78rem;
