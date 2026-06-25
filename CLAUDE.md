@@ -88,7 +88,14 @@ already — see git history around the "fix up all translations" commit).
 
 ## schedule.html — starring and translation model
 
-`schedule.html` is a static page with no backend. Two things to know before touching it:
+`schedule.html` is a static page with no backend. It is a **generated file** — `build_html.py`
+contains the actual HTML/CSS/JS template (as an f-string) and writes `schedule.html` from it.
+Never hand-edit `schedule.html` directly: those changes look fine locally but get silently
+wiped out the next time anyone runs `build_html.py` or `rebuild_all.py`. Always edit the
+template in `build_html.py`, then run `uv run build_html.py` to regenerate `schedule.html`
+(this has already bitten us once — see git history around the "shared view exit button" work).
+
+A few more things to know before touching it:
 
 - **Starring is client-side only.** Stars are stored in the browser's `localStorage`
   (key `fmajor-starred-v1`), empty on first load — there is no preselected/default set.

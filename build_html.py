@@ -187,6 +187,16 @@ TRANSLATIONS = {
     "shareHeaderPrefix": {"pl": "Lista: ", "en": "List: "},
     "shareNote": {"pl": " — fioletowe kolumny pokazują wybory: ", "en": " — purple columns show "},
     "shareNoteSuffix": {"pl": "", "en": "'s picks"},
+    "shareHeaderHint": {
+        "pl": ". Możesz klikać ★ i ♥, aby ułożyć własną listę podczas przeglądania, albo dodać wszystkie wybory {name} do swojej listy.",
+        "en": ". You can click ★ and ♥ to curate your own list while browsing, or add all of {name}'s picks to your list.",
+    },
+    "exitShare": {"pl": "Wyjdź z udostępnionego widoku", "en": "Exit shared view"},
+    "exitShareTitle": {
+        "pl": "Wróć do własnego widoku i usuń dane udostępnionej listy z adresu URL",
+        "en": "Return to your own view and remove the shared list from the URL",
+    },
+    "groupShare": {"pl": "Udostępnianie:", "en": "Sharing:"},
     "ownerFilterPrefix": {"pl": "👀 Wybory: ", "en": "👀 Picks: "},
     "colEvent": {"pl": "Wydarzenie", "en": "Event"},
     "colLocation": {"pl": "Miejsce", "en": "Location"},
@@ -322,11 +332,8 @@ html = f"""<!DOCTYPE html>
     flex-wrap: wrap;
     gap: 0.4rem;
     align-items: center;
-    margin-top: 0.9rem;
-    padding-top: 0.7rem;
-    border-top: 1px solid var(--rule);
   }}
-  .toolbar-spacer {{ margin-left: auto; }}
+  #list-toolbar {{ margin-bottom: 2rem; }}
   .export-btn {{
     font-family: var(--serif);
     font-size: 0.75rem;
@@ -542,12 +549,16 @@ html = f"""<!DOCTYPE html>
     <span class="filter-group-label" data-i18n="groupCategory">Kategoria:</span>
     {filter_buttons}
   </div>
-  <div class="toolbar" id="toolbar">
-    <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń" data-i18n="expandAll" data-i18n-title="expandAllTitle">Rozwiń wszystko</button>
-    <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń" data-i18n="collapseAll" data-i18n-title="collapseAllTitle">Zwiń wszystko</button>
-    <button class="export-btn toolbar-spacer" id="generate-link-btn" title="Wygeneruj link z Twoimi wyborami do wysłania" data-i18n="generateLink" data-i18n-title="generateLinkTitle">Generuj link</button>
+  <div class="filter-group" id="share-toolbar">
+    <span class="filter-group-label" data-i18n="groupShare">Udostępnianie:</span>
+    <button class="export-btn" id="generate-link-btn" title="Wygeneruj link z Twoimi wyborami do wysłania" data-i18n="generateLink" data-i18n-title="generateLinkTitle">Generuj link</button>
   </div>
 </header>
+
+<div class="toolbar" id="list-toolbar">
+  <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń" data-i18n="expandAll" data-i18n-title="expandAllTitle">Rozwiń wszystko</button>
+  <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń" data-i18n="collapseAll" data-i18n-title="collapseAllTitle">Zwiń wszystko</button>
+</div>
 
 {''.join(day_sections)}
 
@@ -682,7 +693,8 @@ function refreshShareUI() {{
   const header = document.getElementById('share-header');
   if (header) {{
     header.textContent = TRANSLATIONS.shareHeaderPrefix[currentLang] + shareData.name
-      + TRANSLATIONS.shareNote[currentLang] + shareData.name + TRANSLATIONS.shareNoteSuffix[currentLang];
+      + TRANSLATIONS.shareNote[currentLang] + shareData.name + TRANSLATIONS.shareNoteSuffix[currentLang]
+      + TRANSLATIONS.shareHeaderHint[currentLang].replace('{{name}}', shareData.name);
   }}
   const ownerFilterBtn = document.getElementById('owner-filter-btn');
   if (ownerFilterBtn) {{
@@ -696,6 +708,11 @@ function refreshShareUI() {{
     syncBtn.textContent = TRANSLATIONS.syncDevicePrefix[currentLang] + shareData.name;
     syncBtn.title = TRANSLATIONS.syncDeviceTitlePrefix[currentLang] + shareData.name
       + TRANSLATIONS.syncDeviceTitleSuffix[currentLang];
+  }}
+  const exitBtn = document.getElementById('exit-share-btn');
+  if (exitBtn) {{
+    exitBtn.textContent = TRANSLATIONS.exitShare[currentLang];
+    exitBtn.title = TRANSLATIONS.exitShareTitle[currentLang];
   }}
 }}
 
@@ -767,7 +784,17 @@ function initShareMode() {{
       syncBtn.textContent = TRANSLATIONS.syncDevicePrefix[currentLang] + shareData.name;
     }}, 1500);
   }});
-  document.getElementById('toolbar').appendChild(syncBtn);
+  document.getElementById('share-toolbar').appendChild(syncBtn);
+
+  const exitBtn = document.createElement('button');
+  exitBtn.className = 'export-btn';
+  exitBtn.id = 'exit-share-btn';
+  exitBtn.textContent = TRANSLATIONS.exitShare[currentLang];
+  exitBtn.title = TRANSLATIONS.exitShareTitle[currentLang];
+  exitBtn.addEventListener('click', () => {{
+    location.href = location.pathname;
+  }});
+  document.getElementById('share-toolbar').appendChild(exitBtn);
 
   refreshShareUI();
 }}
