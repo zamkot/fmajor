@@ -122,11 +122,8 @@
     flex-wrap: wrap;
     gap: 0.4rem;
     align-items: center;
-    margin-top: 0.9rem;
-    padding-top: 0.7rem;
-    border-top: 1px solid var(--rule);
   }
-  .toolbar-spacer { margin-left: auto; }
+  #list-toolbar { margin-bottom: 2rem; }
   .export-btn {
     font-family: var(--serif);
     font-size: 0.75rem;
@@ -342,12 +339,16 @@
     <span class="filter-group-label" data-i18n="groupCategory">Kategoria:</span>
     <button class="filter-btn" data-cat="infantils" data-i18n-cat="infantils" style="--c:#c80">Dla dzieci</button><button class="filter-btn" data-cat="gastronomiques" data-i18n-cat="gastronomiques" style="--c:#a73">Gastronomia</button><button class="filter-btn" data-cat="altres" data-i18n-cat="altres" style="--c:#888">Inne</button><button class="filter-btn" data-cat="musica" data-i18n-cat="musica" style="--c:#a33">Muzyka</button><button class="filter-btn" data-cat="esportives" data-i18n-cat="esportives" style="--c:#36a">Sport</button><button class="filter-btn" data-cat="teatre-dansa" data-i18n-cat="teatre-dansa" style="--c:#838">Teatr/Taniec</button><button class="filter-btn" data-cat="populars" data-i18n-cat="populars" style="--c:#3a6">Tradycje ludowe</button>
   </div>
-  <div class="toolbar" id="toolbar">
-    <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń" data-i18n="expandAll" data-i18n-title="expandAllTitle">Rozwiń wszystko</button>
-    <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń" data-i18n="collapseAll" data-i18n-title="collapseAllTitle">Zwiń wszystko</button>
-    <button class="export-btn toolbar-spacer" id="generate-link-btn" title="Wygeneruj link z Twoimi wyborami do wysłania" data-i18n="generateLink" data-i18n-title="generateLinkTitle">Generuj link</button>
+  <div class="filter-group" id="share-toolbar">
+    <span class="filter-group-label" data-i18n="groupShare">Udostępnianie:</span>
+    <button class="export-btn" id="generate-link-btn" title="Wygeneruj link z Twoimi wyborami do wysłania" data-i18n="generateLink" data-i18n-title="generateLinkTitle">Generuj link</button>
   </div>
 </header>
+
+<div class="toolbar" id="list-toolbar">
+  <button class="export-btn" id="expand-all-btn" title="Rozwiń opisy wszystkich wydarzeń" data-i18n="expandAll" data-i18n-title="expandAllTitle">Rozwiń wszystko</button>
+  <button class="export-btn" id="collapse-all-btn" title="Zwiń opisy wszystkich wydarzeń" data-i18n="collapseAll" data-i18n-title="collapseAllTitle">Zwiń wszystko</button>
+</div>
 
 
     <section class="day">
@@ -6610,7 +6611,7 @@ const STORAGE_KEY = 'fmajor-starred-v1';
 const WANT_STORAGE_KEY = 'fmajor-wantgo-v1';
 const HIDDEN_STORAGE_KEY = 'fmajor-hidden-v1';
 const LANG_STORAGE_KEY = 'fmajor-lang-v1';
-const TRANSLATIONS = {"subtitle": {"pl": "25–29 czerwca 2026 · program wydarzeń", "en": "25–29 June 2026 · event schedule"}, "searchPlaceholder": {"pl": "Szukaj…", "en": "Search…"}, "filterAll": {"pl": "Wszystkie", "en": "All"}, "filterStarred": {"pl": "★ Twoje wybrane", "en": "★ Your picks"}, "filterWantgo": {"pl": "♥ Chcę pójść", "en": "♥ Want to go"}, "filterHidden": {"pl": "⊘ Skryte", "en": "⊘ Hidden"}, "groupPersonal": {"pl": "Twoje listy:", "en": "My lists:"}, "groupCategory": {"pl": "Kategoria:", "en": "Category:"}, "expandAll": {"pl": "Rozwiń wszystko", "en": "Expand all"}, "expandAllTitle": {"pl": "Rozwiń opisy wszystkich wydarzeń", "en": "Expand all event descriptions"}, "collapseAll": {"pl": "Zwiń wszystko", "en": "Collapse all"}, "collapseAllTitle": {"pl": "Zwiń opisy wszystkich wydarzeń", "en": "Collapse all event descriptions"}, "generateLink": {"pl": "Generuj link", "en": "Generate link"}, "generateLinkTitle": {"pl": "Wygeneruj link z Twoimi wyborami do wysłania", "en": "Generate a shareable link with your picks"}, "namePrompt": {"pl": "Twoje imię:", "en": "Your name:"}, "anonymousName": {"pl": "Anonim", "en": "Friend"}, "syncDevicePrefix": {"pl": "Dodaj wybory: ", "en": "Add picks: "}, "syncDeviceTitlePrefix": {"pl": "Jednorazowo doda wybory ", "en": "One-time merge of "}, "syncDeviceTitleSuffix": {"pl": " do Twoich własnych na tym urządzeniu (nie da się łatwo odwrócić)", "en": "'s picks into your own on this device (not easily reversible)"}, "shareHeaderPrefix": {"pl": "Lista: ", "en": "List: "}, "shareNote": {"pl": " — fioletowe kolumny pokazują wybory: ", "en": " — purple columns show "}, "shareNoteSuffix": {"pl": "", "en": "'s picks"}, "shareHeaderHint": {"pl": ". Możesz klikać ★ i ♥, aby ułożyć własną listę podczas przeglądania, albo dodać wszystkie wybory {name} do swojej listy.", "en": ". You can click ★ and ♥ to curate your own list while browsing, or add all of {name}'s picks to your list."}, "exitShare": {"pl": "Wyjdź z udostępnionego widoku", "en": "Exit shared view"}, "exitShareTitle": {"pl": "Wróć do własnego widoku i usuń dane udostępnionej listy z adresu URL", "en": "Return to your own view and remove the shared list from the URL"}, "ownerFilterPrefix": {"pl": "👀 Wybory: ", "en": "👀 Picks: "}, "colEvent": {"pl": "Wydarzenie", "en": "Event"}, "colLocation": {"pl": "Miejsce", "en": "Location"}, "starLabel": {"pl": "Oznacz gwiazdką", "en": "Star this event"}, "wantLabel": {"pl": "Chcę pójść", "en": "Want to go"}, "hideAria": {"pl": "Skryj", "en": "Hide"}, "hideTitle": {"pl": "Skryj to wydarzenie", "en": "Hide this event"}, "footer": {"pl": "190 wydarzeń · źródło: <a href=\"https://fmsantcugat.cat/\">fmsantcugat.cat</a> · kliknij wydarzenie, aby rozwinąć opis · kliknij ☆, aby oznaczyć gwiazdką (zapisywane lokalnie w przeglądarce)", "en": "190 events · source: <a href=\"https://fmsantcugat.cat/\">fmsantcugat.cat</a> · click an event to expand its description · click ☆ to star it (saved locally in your browser)"}, "copied": {"pl": "Skopiowano!", "en": "Copied!"}};
+const TRANSLATIONS = {"subtitle": {"pl": "25–29 czerwca 2026 · program wydarzeń", "en": "25–29 June 2026 · event schedule"}, "searchPlaceholder": {"pl": "Szukaj…", "en": "Search…"}, "filterAll": {"pl": "Wszystkie", "en": "All"}, "filterStarred": {"pl": "★ Twoje wybrane", "en": "★ Your picks"}, "filterWantgo": {"pl": "♥ Chcę pójść", "en": "♥ Want to go"}, "filterHidden": {"pl": "⊘ Skryte", "en": "⊘ Hidden"}, "groupPersonal": {"pl": "Twoje listy:", "en": "My lists:"}, "groupCategory": {"pl": "Kategoria:", "en": "Category:"}, "expandAll": {"pl": "Rozwiń wszystko", "en": "Expand all"}, "expandAllTitle": {"pl": "Rozwiń opisy wszystkich wydarzeń", "en": "Expand all event descriptions"}, "collapseAll": {"pl": "Zwiń wszystko", "en": "Collapse all"}, "collapseAllTitle": {"pl": "Zwiń opisy wszystkich wydarzeń", "en": "Collapse all event descriptions"}, "generateLink": {"pl": "Generuj link", "en": "Generate link"}, "generateLinkTitle": {"pl": "Wygeneruj link z Twoimi wyborami do wysłania", "en": "Generate a shareable link with your picks"}, "namePrompt": {"pl": "Twoje imię:", "en": "Your name:"}, "anonymousName": {"pl": "Anonim", "en": "Friend"}, "syncDevicePrefix": {"pl": "Dodaj wybory: ", "en": "Add picks: "}, "syncDeviceTitlePrefix": {"pl": "Jednorazowo doda wybory ", "en": "One-time merge of "}, "syncDeviceTitleSuffix": {"pl": " do Twoich własnych na tym urządzeniu (nie da się łatwo odwrócić)", "en": "'s picks into your own on this device (not easily reversible)"}, "shareHeaderPrefix": {"pl": "Lista: ", "en": "List: "}, "shareNote": {"pl": " — fioletowe kolumny pokazują wybory: ", "en": " — purple columns show "}, "shareNoteSuffix": {"pl": "", "en": "'s picks"}, "shareHeaderHint": {"pl": ". Możesz klikać ★ i ♥, aby ułożyć własną listę podczas przeglądania, albo dodać wszystkie wybory {name} do swojej listy.", "en": ". You can click ★ and ♥ to curate your own list while browsing, or add all of {name}'s picks to your list."}, "exitShare": {"pl": "Wyjdź z udostępnionego widoku", "en": "Exit shared view"}, "exitShareTitle": {"pl": "Wróć do własnego widoku i usuń dane udostępnionej listy z adresu URL", "en": "Return to your own view and remove the shared list from the URL"}, "groupShare": {"pl": "Udostępnianie:", "en": "Sharing:"}, "ownerFilterPrefix": {"pl": "👀 Wybory: ", "en": "👀 Picks: "}, "colEvent": {"pl": "Wydarzenie", "en": "Event"}, "colLocation": {"pl": "Miejsce", "en": "Location"}, "starLabel": {"pl": "Oznacz gwiazdką", "en": "Star this event"}, "wantLabel": {"pl": "Chcę pójść", "en": "Want to go"}, "hideAria": {"pl": "Skryj", "en": "Hide"}, "hideTitle": {"pl": "Skryj to wydarzenie", "en": "Hide this event"}, "footer": {"pl": "190 wydarzeń · źródło: <a href=\"https://fmsantcugat.cat/\">fmsantcugat.cat</a> · kliknij wydarzenie, aby rozwinąć opis · kliknij ☆, aby oznaczyć gwiazdką (zapisywane lokalnie w przeglądarce)", "en": "190 events · source: <a href=\"https://fmsantcugat.cat/\">fmsantcugat.cat</a> · click an event to expand its description · click ☆ to star it (saved locally in your browser)"}, "copied": {"pl": "Skopiowano!", "en": "Copied!"}};
 const CATEGORY_TRANSLATIONS = {"infantils": {"pl": "Dla dzieci", "en": "For kids"}, "gastronomiques": {"pl": "Gastronomia", "en": "Food & drink"}, "altres": {"pl": "Inne", "en": "Other"}, "musica": {"pl": "Muzyka", "en": "Music"}, "esportives": {"pl": "Sport", "en": "Sport"}, "teatre-dansa": {"pl": "Teatr/Taniec", "en": "Theatre/Dance"}, "populars": {"pl": "Tradycje ludowe", "en": "Folk traditions"}};
 
 const BASE62_CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -6823,7 +6824,7 @@ function initShareMode() {
       syncBtn.textContent = TRANSLATIONS.syncDevicePrefix[currentLang] + shareData.name;
     }, 1500);
   });
-  document.getElementById('toolbar').appendChild(syncBtn);
+  document.getElementById('share-toolbar').appendChild(syncBtn);
 
   const exitBtn = document.createElement('button');
   exitBtn.className = 'export-btn';
@@ -6833,7 +6834,7 @@ function initShareMode() {
   exitBtn.addEventListener('click', () => {
     location.href = location.pathname;
   });
-  document.getElementById('toolbar').appendChild(exitBtn);
+  document.getElementById('share-toolbar').appendChild(exitBtn);
 
   refreshShareUI();
 }
