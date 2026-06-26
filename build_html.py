@@ -149,7 +149,8 @@ filter_buttons = "".join(
     for c in all_category_labels
 )
 location_options = "".join(
-    f'<option value="{escape(loc)}">{escape(loc)}</option>' for loc in all_locations
+    f'<div class="location-option" data-value="{escape(loc)}" tabindex="-1">{escape(loc)}</div>'
+    for loc in all_locations
 )
 special_filter_buttons = (
     '<button class="filter-btn special" data-cat="__starred__" style="--c:#b8860b" data-i18n="filterStarred">★ Twoje wybrane</button>'
@@ -206,8 +207,9 @@ TRANSLATIONS = {
     "colEvent": {"pl": "Wydarzenie", "en": "Event"},
     "colLocation": {"pl": "Miejsce", "en": "Location"},
     "groupLocation": {"pl": "Lokalizacja:", "en": "Location:"},
-    "filterAllLocations": {"pl": "Wszystkie lokalizacje", "en": "All locations"},
+    "locationSearchPlaceholder": {"pl": "Szukaj lokalizacji…", "en": "Search locations…"},
     "locationSelectAria": {"pl": "Filtruj po lokalizacji", "en": "Filter by location"},
+    "locationClear": {"pl": "Wyczyść filtr lokalizacji", "en": "Clear location filter"},
     "starLabel": {"pl": "Oznacz gwiazdką", "en": "Star this event"},
     "wantLabel": {"pl": "Chcę pójść", "en": "Want to go"},
     "hideAria": {"pl": "Skryj", "en": "Hide"},
@@ -335,6 +337,12 @@ html = f"""<!DOCTYPE html>
     width: 9rem;
   }}
   .search-input:focus {{ outline: none; border-color: var(--ink-light); }}
+  .location-combo {{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }}
   .location-select {{
     font-family: var(--serif);
     font-size: 0.85rem;
@@ -343,9 +351,40 @@ html = f"""<!DOCTYPE html>
     padding: 0.25rem 0.4rem;
     color: var(--ink);
     background: #fff;
-    max-width: 14rem;
+    width: 12rem;
   }}
   .location-select:focus {{ outline: none; border-color: var(--ink-light); }}
+  .location-clear-btn {{
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    line-height: 1;
+    color: var(--ink-light);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.3rem;
+  }}
+  .location-clear-btn:hover {{ color: var(--ink); }}
+  .location-dropdown {{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.15rem;
+    width: 16rem;
+    max-height: 14rem;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid var(--rule);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    z-index: 20;
+  }}
+  .location-option {{
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+  }}
+  .location-option:hover, .location-option.highlighted {{ background: #f0eee8; }}
+  .location-option.hidden-opt {{ display: none; }}
   .toolbar {{
     display: flex;
     flex-wrap: wrap;
@@ -560,7 +599,9 @@ html = f"""<!DOCTYPE html>
       justify-content: center;
     }}
     .filter-btn {{ padding: 0.4rem 0.75rem; font-size: 0.85rem; }}
-    .location-select {{ max-width: 100%; flex: 1 1 100%; padding: 0.4rem 0.5rem; font-size: 0.85rem; }}
+    .location-combo {{ flex: 1 1 100%; }}
+    .location-select {{ width: 100%; padding: 0.4rem 0.5rem; font-size: 0.85rem; }}
+    .location-dropdown {{ width: 100%; }}
     .lang-btn {{ padding: 0.35rem 0.7rem; font-size: 0.78rem; }}
     .export-btn {{ padding: 0.4rem 0.75rem; font-size: 0.8rem; }}
   }}
@@ -614,10 +655,17 @@ html = f"""<!DOCTYPE html>
   </div>
   <div class="filter-group" id="location-filters">
     <span class="filter-group-label" data-i18n="groupLocation">Lokalizacja:</span>
-    <select id="location-select" class="location-select" aria-label="Filtruj po lokalizacji" data-i18n-aria="locationSelectAria">
-      <option value="" data-i18n="filterAllLocations">Wszystkie lokalizacje</option>
-      {location_options}
-    </select>
+    <div class="location-combo" id="location-combo">
+      <input type="text" id="location-input" class="location-select" autocomplete="off"
+             placeholder="Szukaj lokalizacji…" aria-label="Filtruj po lokalizacji"
+             data-i18n-placeholder="locationSearchPlaceholder" data-i18n-aria="locationSelectAria">
+      <button type="button" id="location-clear-btn" class="location-clear-btn" hidden
+              aria-label="Wyczyść filtr lokalizacji" title="Wyczyść filtr lokalizacji"
+              data-i18n-aria="locationClear" data-i18n-title="locationClear">&times;</button>
+      <div class="location-dropdown" id="location-dropdown" hidden>
+        {location_options}
+      </div>
+    </div>
   </div>
   <div class="filter-group" id="share-toolbar">
     <span class="filter-group-label" data-i18n="groupShare">Udostępnianie:</span>
@@ -923,7 +971,10 @@ document.getElementById('collapse-all-btn').addEventListener('click', () => {{
 
 const filterBtns = document.querySelectorAll('.filter-btn');
 const searchInput = document.getElementById('search-input');
-const locationSelect = document.getElementById('location-select');
+const locationInput = document.getElementById('location-input');
+const locationClearBtn = document.getElementById('location-clear-btn');
+const locationDropdown = document.getElementById('location-dropdown');
+const locationOptions = [...document.querySelectorAll('.location-option')];
 const activeCats = new Set();
 let activeLoc = '';
 
@@ -977,11 +1028,17 @@ function applyFilter() {{
   }});
 }}
 
+function clearLocationFilter() {{
+  activeLoc = '';
+  locationInput.value = '';
+  locationClearBtn.hidden = true;
+  filterLocationOptions('');
+}}
+
 function toggleFilter(cat) {{
   if (cat === 'all') {{
     activeCats.clear();
-    activeLoc = '';
-    locationSelect.value = '';
+    clearLocationFilter();
   }} else if (cat === '__hidden__') {{
     if (activeCats.size === 1 && activeCats.has('__hidden__')) {{
       activeCats.clear();
@@ -1000,10 +1057,55 @@ filterBtns.forEach(btn => {{
   btn.addEventListener('click', () => toggleFilter(btn.dataset.cat));
 }});
 searchInput.addEventListener('input', applyFilter);
-locationSelect.addEventListener('change', () => {{
-  activeLoc = locationSelect.value;
+
+function filterLocationOptions(query) {{
+  const norm = normalizeSearch(query);
+  locationOptions.forEach(opt => {{
+    const match = !norm || normalizeSearch(opt.dataset.value).includes(norm);
+    opt.classList.toggle('hidden-opt', !match);
+  }});
+}}
+
+function openLocationDropdown() {{
+  filterLocationOptions(locationInput.value);
+  locationDropdown.hidden = false;
+}}
+
+function selectLocation(value) {{
+  activeLoc = value;
+  locationInput.value = value;
+  locationClearBtn.hidden = false;
+  locationDropdown.hidden = true;
   applyFilter();
+}}
+
+locationInput.addEventListener('focus', openLocationDropdown);
+locationInput.addEventListener('input', () => {{
+  filterLocationOptions(locationInput.value);
+  locationDropdown.hidden = false;
 }});
+locationInput.addEventListener('keydown', e => {{
+  if (e.key === 'Escape') {{ locationDropdown.hidden = true; locationInput.blur(); }}
+  if (e.key === 'Enter') {{
+    e.preventDefault();
+    const visible = locationOptions.filter(o => !o.classList.contains('hidden-opt'));
+    if (visible.length === 1) {{ selectLocation(visible[0].dataset.value); }}
+  }}
+}});
+locationOptions.forEach(opt => {{
+  opt.addEventListener('click', () => selectLocation(opt.dataset.value));
+}});
+locationClearBtn.addEventListener('click', () => {{
+  clearLocationFilter();
+  applyFilter();
+  locationInput.focus();
+}});
+document.addEventListener('click', e => {{
+  if (!document.getElementById('location-combo').contains(e.target)) {{
+    locationDropdown.hidden = true;
+  }}
+}});
+
 if (shareData) {{ activeCats.add('__ownertouched__'); }}
 applyFilter();
 
